@@ -5,28 +5,23 @@ let maxDistance;
 let spacer;
 let rule;
 let ruleN = 90;
-let table;
 
 function setup() {
   var canvas = createCanvas(700, 360);
   canvas.parent('canvasForHTML');
   spacer = 10;
-  table = loadTable('glider.csv')
-  console.log(table)
-  newset();
+  init();
   reset();
   fill(20,20,20);
   rect(-2, -2, width+4, height+4);
-
-
   let button = select('#start');
-  button.mousePressed(reset);
-
-
+  button.mousePressed(clearScreen);
+  //let gliderButton = select('#glider');
+  //gliderButton.mousePressed(glider);
 }
 
 function draw() {
-  if(frameCount % 5 === 0){
+  if(frameCount % 20 === 0){
     fill(20,20,20);
     rect(-2, -2, width+4, height+4);
     stroke(0,0,0);
@@ -36,47 +31,27 @@ function draw() {
   }
 }
 
-function newset() {
-    for (let x = 0; x <= (width/spacer); x += 1) {
+function init() {
+    for (let x = -10; x <= (width/spacer)+10; x += 1) {
     distances[x] = []; // create nested array
     distance2[x] = []
-    resetdistances[x] = [];
-    for (let y = 0; y < (height/spacer); y += 1) {
+    for (let y = -10; y < (height/spacer)+10; y += 1) {
       distances[x][y] = 0;
-      resetdistances[x][y] = 0;
       distance2[x][y] = 0;
     }
   }
 }
 
 function reset() {
-    for (let x = 0; x <= (width/spacer); x += 1) {
-    for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = int(table.getString(x, y));
-    }
-  }
+  clearScreen();
+  glider(30,10);
 }
 
-function calculateRule(ruleNumber) {
-    if (ruleNumber == 1) {rule='00000001'} else {
-    rule=ruleNumberToRules(ruleNumber)
-    while (rule.length<8) {
-      rule = '0' + rule;
+function clearScreen() {
+  for (let x = -10; x < (width/spacer)+10; x += 1) {
+    for (let y = -10; y < (height/spacer)+10; y += 1) {
+      distances[x][y] = 0;
     }
-  }
-  if (ruleNumber == 0) {rule='00000000'}
-  rule = [int(rule[0]),int(rule[1]),int(rule[2]),int(rule[3]),int(rule[4]),int(rule[5]),int(rule[6]),int(rule[7])]
-  return rule
-}
-
-function ruleNumberToRules(val, res = '') {
-  if (val >= 2) {
-    if (res=='') {res = val % 2  + res} else {res = val % 2  + res}
-    return ruleNumberToRules(val = int(val / 2), res);
-  }
-  if (val == 1){
-    res = '1' + res;
-    return res;
   }
 }
 
@@ -91,13 +66,13 @@ function display() {
 }
 
 function applyRule() {
-  for (let x = 0; x <= (width/spacer); x += 1) {
-    for (let y = 0; y < (height/spacer); y += 1) {
-      distance2[x][y] = 0;
+  for (let x = -10; x <= (width/spacer)+10; x += 1) {
+    for (let y = -10; y < (height/spacer)+10; y += 1) {
+      distance2[x][y] = distances[x][y];
     }
   }
-  for (let y = (height/spacer); y >= 0; y--) {
-    for (let x = 1; x < (width/spacer)-1; x++) {
+  for (let y = -9; y < (height/spacer)+9; y += 1) {
+    for (let x = -9; x < (width/spacer)+9; x++) {
       // Any live cell with fewer than two live neighbours dies, as if by underpopulation
         if((distances[x][y]==1)
           &&((distances[x-1][y+1]
@@ -140,9 +115,42 @@ function applyRule() {
           +distances[x+1][y-1])==(3))) {distance2[x][y]=1}
     }
   }
-  for (let x = 0; x <= (width/spacer); x += 1) {
-    for (let y = 0; y < (height/spacer); y += 1) {
+  for (let x = -10; x <= (width/spacer)+10; x += 1) {
+    for (let y = -10; y < (height/spacer)+10; y += 1) {
       distances[x][y] = distance2[x][y];
+    }
+  }
+}
+
+function glider(xOffset = int(width/2), yOffset = int(height/2)) {
+    let shape =   [ [ 1, 1, 1], 
+                    [ 1, 0, 0], 
+                    [ 0, 1, 0]];
+    for (let x = 0; x < 3; x += 1) {
+    for (let y = 0; y < 3; y += 1) {
+      distances[xOffset+x][yOffset+y] = shape[x][y];
+    }
+  }
+}
+
+
+function cross(xOffset = int(width/2), yOffset = int(height/2)) {
+    let shape =   [ [ 0, 1, 0], 
+                    [ 0, 1, 0], 
+                    [ 0, 1, 0]];
+    for (let x = 0; x < 3; x += 1) {
+    for (let y = 0; y < 3; y += 1) {
+      distances[xOffset+x][yOffset+y] = shape[x][y];
+    }
+  }
+}
+
+function block(xOffset = int(width/2), yOffset = int(height/2)) {
+    let shape =   [[ 1, 1], 
+                   [ 1, 1]];
+    for (let x = 0; x < 2; x += 1) {
+    for (let y = 0; y < 2; y += 1) {
+      distances[xOffset+x][yOffset+y] = shape[x][y];
     }
   }
 }

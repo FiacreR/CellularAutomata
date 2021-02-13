@@ -5,6 +5,7 @@ let maxDistance;
 let spacer;
 let rule;
 let ruleN = 90;
+let table;
 
 function setup() {
   var canvas = createCanvas(700, 360);
@@ -50,12 +51,9 @@ function newset() {
 function reset() {
     for (let x = 0; x <= (width/spacer); x += 1) {
     for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = 0;
+      distances[x][y] = int(table.getString(x, y));
     }
   }
-  distances[int(width/spacer/2)-1][int(height/spacer/2)-1] = 1;
-  distances[int(width/spacer/2)][int(height/spacer/2)-1] = 1;
-  distances[int(width/spacer/2)+1][int(height/spacer/2)-1] = 1;
 }
 
 function calculateRule(ruleNumber) {

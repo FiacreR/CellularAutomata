@@ -11,12 +11,13 @@ function setup() {
   var canvas = createCanvas(700, 360);
   canvas.parent('canvasForHTML');
   spacer = 10;
+  table = loadTable('glider.csv')
+  console.log(table)
   newset();
   reset();
   fill(20,20,20);
   rect(-2, -2, width+4, height+4);
-  table = loadTable('glider.csv')
-  console.log(table)
+
 
   let button = select('#start');
   button.mousePressed(reset);

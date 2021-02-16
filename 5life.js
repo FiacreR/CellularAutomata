@@ -16,19 +16,18 @@ function setup() {
   rect(-2, -2, width+4, height+4);
   let button = select('#start');
   button.mousePressed(clearScreen);
-  //let gliderButton = select('#glider');
-  //gliderButton.mousePressed(glider);
+  let gliderButton = select('#glider');
+  gliderButton.mousePressed(function() {insertLife(glider);});
+  frameRate(20);
 }
 
 function draw() {
-  if(frameCount % 20 === 0){
     fill(20,20,20);
     rect(-2, -2, width+4, height+4);
     stroke(0,0,0);
     fill(0,150,0);
     display();
     applyRule();
-  }
 }
 
 function init() {
@@ -44,7 +43,7 @@ function init() {
 
 function reset() {
   clearScreen();
-  glider(30,10);
+  insertLife();
 }
 
 function clearScreen() {
@@ -122,35 +121,12 @@ function applyRule() {
   }
 }
 
-function glider(xOffset = int(width/2), yOffset = int(height/2)) {
-    let shape =   [ [ 1, 1, 1], 
-                    [ 1, 0, 0], 
-                    [ 0, 1, 0]];
+
+
+function insertLife(lifeformInstance=glider,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
     for (let x = 0; x < 3; x += 1) {
     for (let y = 0; y < 3; y += 1) {
-      distances[xOffset+x][yOffset+y] = shape[x][y];
-    }
-  }
-}
-
-
-function cross(xOffset = int(width/2), yOffset = int(height/2)) {
-    let shape =   [ [ 0, 1, 0], 
-                    [ 0, 1, 0], 
-                    [ 0, 1, 0]];
-    for (let x = 0; x < 3; x += 1) {
-    for (let y = 0; y < 3; y += 1) {
-      distances[xOffset+x][yOffset+y] = shape[x][y];
-    }
-  }
-}
-
-function block(xOffset = int(width/2), yOffset = int(height/2)) {
-    let shape =   [[ 1, 1], 
-                   [ 1, 1]];
-    for (let x = 0; x < 2; x += 1) {
-    for (let y = 0; y < 2; y += 1) {
-      distances[xOffset+x][yOffset+y] = shape[x][y];
+      distances[xOffset+x][yOffset+y] = lifeformInstance[x][y];
     }
   }
 }

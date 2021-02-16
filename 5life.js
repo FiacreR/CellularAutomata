@@ -18,6 +18,12 @@ function setup() {
   button.mousePressed(clearScreen);
   let gliderButton = select('#glider');
   gliderButton.mousePressed(function() {insertLife(glider);});
+  let lightweightButton = select('#lightweight');
+  lightweightButton.mousePressed(function() {insertLife(lightweight);});
+  let mediumweightButton = select('#mediumweight');
+  mediumweightButton.mousePressed(function() {insertLife(mediumweight);});
+  let heavyweightButton = select('#heavyweight');
+  heavyweightButton.mousePressed(function() {insertLife(heavyweight);});
   frameRate(20);
 }
 
@@ -120,8 +126,6 @@ function applyRule() {
     }
   }
 }
-
-
 
 function insertLife(lifeformInstance=glider,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
     for (let x = 0; x < 3; x += 1) {

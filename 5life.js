@@ -78,6 +78,8 @@ function applyRule() {
   }
   for (let y = -9; y < (height/spacer)+9; y += 1) {
     for (let x = -9; x < (width/spacer)+9; x++) {
+      // Outside area cell disapear
+        if((x<-5)||(x>(width/spacer+5))||(y<-5)||(y>(height/spacer+5))) {distance2[x][y]=0}
       // Any live cell with fewer than two live neighbours dies, as if by underpopulation
         if((distances[x][y]==1)
           &&((distances[x-1][y+1]
@@ -128,8 +130,8 @@ function applyRule() {
 }
 
 function insertLife(lifeformInstance=glider,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
-    for (let x = 0; x < 3; x += 1) {
-    for (let y = 0; y < 3; y += 1) {
+    for (let x = 0; x < lifeformInstance.length; x += 1) {
+    for (let y = 0; y < lifeformInstance[0].length; y += 1) {
       distances[xOffset+x][yOffset+y] = lifeformInstance[x][y];
     }
   }

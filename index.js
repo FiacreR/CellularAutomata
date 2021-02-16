@@ -9,35 +9,11 @@ let ruleN = 90;
 function setup() {
   var canvas = createCanvas(700, 360);
   canvas.parent('canvasForHTML');
-  spacer = 6;
+  spacer = 3;
   init();
   reset();
   fill(20,20,20);
   rect(-2, -2, width+4, height+4);
-  let button = select('#start');
-  button.mousePressed(clearScreen);
-  let gliderButton = select('#glider');
-  gliderButton.mousePressed(function() {insertLife(glider);});
-  let lightweightButton = select('#lightweight');
-  lightweightButton.mousePressed(function() {insertLife(lightweight);});
-  let mediumweightButton = select('#mediumweight');
-  mediumweightButton.mousePressed(function() {insertLife(mediumweight);});
-  let heavyweightButton = select('#heavyweight');
-  heavyweightButton.mousePressed(function() {insertLife(heavyweight);});
-  let coeButton = select('#coe');
-  coeButton.mousePressed(function() {insertLife(coe);});
-  let ecologistButton = select('#ecologist');
-  ecologistButton.mousePressed(function() {insertLife(ecologist);});
-  let flotillaButton = select('#flotilla');
-  flotillaButton.mousePressed(function() {insertLife(flotilla);});
-  let hammerheadButton = select('#hammerhead');
-  hammerheadButton.mousePressed(function() {insertLife(hammerhead);});
-  let hivenudgerButton = select('#hivenudger');
-  hivenudgerButton.mousePressed(function() {insertLife(hivenudger);});
-  let puffertrainButton = select('#puffertrain');
-  puffertrainButton.mousePressed(function() {insertLife(puffertrain);});
-  let puffsuppressorButton = select('#puffsuppressor');
-  puffsuppressorButton.mousePressed(function() {insertLife(puffsuppressor);});
   frameRate(20);
 }
 
@@ -63,7 +39,7 @@ function init() {
 
 function reset() {
   clearScreen();
-  insertLife();
+  insertLife(lidka);
 }
 
 function clearScreen() {
@@ -143,7 +119,7 @@ function applyRule() {
   }
 }
 
-function insertLife(lifeformInstance=hammerhead,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
+function insertLife(lifeformInstance=hivenudger,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
     for (let x = 0; x < lifeformInstance.length; x += 1) {
     for (let y = 0; y < lifeformInstance[0].length; y += 1) {
       distances[xOffset+x-int(lifeformInstance.length/2)][yOffset+y-int(lifeformInstance[0].length/2)] = lifeformInstance[x][y];

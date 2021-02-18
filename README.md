@@ -1,4 +1,4 @@
 # Emergence
  
-Personal repo about structures and their emergin properties:
+Personal repo about structures and their emerging properties:
 https://fiacrerougieux.github.io/emergence/

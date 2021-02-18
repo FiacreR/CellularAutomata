@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-	<title>Cellular Automata</title>
-	<link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Cellular Automata</title>
+  <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
 </head>
@@ -16,33 +16,149 @@
   <a href="2totalistic.html">Totalistic</a>
   <a href="3continuous.html">Continuous</a> 
   <a href="4stochastic.html">Stochastic</a> 
-  <a href="5life.html" class="active">Life</a> 
+  <a href="5life.html" class="active">Lifeforms</a> 
 </div>
 
-<section class="box-dark">
-<h2>2D cellular automata: The game of life instance.</h2>
-<script type="text/javascript" src="5life.js"></script>
 <script type="text/javascript" src="lifeforms.js"></script>
-<div id="canvasForHTML"></div>
-<button id="start" class="restart">Clear</button>
-<p>Spaceships:
-<button id="glider" class="restart">Glider</button>
-<button id="lightweight" class="restart">Lightweight</button>
-<button id="mediumweight" class="restart">Mediumweight</button>
-<button id="heavyweight" class="restart">Heavyweight</button>
-<button id="coe" class="restart">Coe</button>
-<button id="ecologist" class="restart">Ecologist</button>
-<button id="flotilla" class="restart">Flotilla</button>
-<button id="hammerhead" class="restart">Hammerhead</button>
-<button id="hivenudger" class="restart">Hivenudger</button>
-<button id="puffertrain" class="restart">Puffertrain</button>
-<button id="puffsuppressor" class="restart">Puffsuppressor</button>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-</p>
-<p>Please see <a href="https://www.conwaylife.com/ref/lexicon/lex.htm">The life lexicon.</a>.</p>
+<script type="text/javascript" src="5life.js"></script>
+
+<div id="canvas1" class="background" ></div>
+<p onmouseover="turnon(glider);">
+<section  class="narrow" onmouseover="turnon(glider);">
+<hr>
+<h2>glider</h2>
+<hr>
 </section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(lightweight);">
+<section  class="narrow" onmouseover="turnon(lightweight);">
+<hr>
+<h2>lightweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(mediumweight);">
+<section  class="narrow" onmouseover="turnon(mediumweight);">
+<hr>
+<h2>mediumweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(heavyweight);">
+<section  class="narrow" onmouseover="turnon(heavyweight);">
+<hr>
+<h2>heavyweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(hammerhead);">
+<section  class="narrow" onmouseover="turnon(hammerhead);">
+<hr>
+<h2>hammerhead</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(flotilla);">
+<section  class="narrow" onmouseover="turnon(flotilla);">
+<hr>
+<h2>flotilla</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(hivenudger);">
+<section  class="narrow" onmouseover="turnon(hivenudger);">
+<hr>
+<h2>hivenudger</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p id="puffertrain" onmouseover="turnon(puffertrain);">
+<section  class="narrow" onmouseover="turnon(puffertrain);">
+<hr>
+<h2>puffertrain</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(puffsuppressor);">
+<section  class="narrow" onmouseover="turnon(puffsuppressor);">
+<hr>
+<h2>puffsuppressor</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(brain);">
+<section  class="narrow" onmouseover="turnon(brain);">
+<hr>
+<h2>brain</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(dart);">
+<section  class="narrow" onmouseover="turnon(dart);">
+<hr>
+<h2>dart</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(edgerepair);">
+<section  class="narrow" onmouseover="turnon(edgerepair);">
+<hr>
+<h2>edgerepair</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(fly);">
+<section  class="narrow" onmouseover="turnon(fly);">
+<hr>
+<h2>fly</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(turtle);">
+<section  class="narrow" onmouseover="turnon(turtle);">
+<hr>
+<h2>turtle</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(wasp);">
+<section  class="narrow" onmouseover="turnon(wasp);">
+<hr>
+<h2>wasp</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p>Please see <a href="https://www.conwaylife.com/ref/lexicon/lex.htm">The life lexicon.</a>.</p>
+
 </body>
 </html>

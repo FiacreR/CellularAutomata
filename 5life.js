@@ -1,152 +1,143 @@
-let distances = [];
-let resetdistances = [];
-let distance2 = [];
-let maxDistance;
-let spacer;
-let rule;
-let ruleN = 90;
+const s = ( p ) => {
+  p.distances = [];
+  p.resetdistances = [];
+  p.distance2 = [];
+  p.maxDistance;
+  p.spacer;
+  p.rule;
+  p.ruleN = 90;
 
-function setup() {
-  var canvas = createCanvas(700, 360);
-  canvas.parent('canvasForHTML');
-  spacer = 6;
-  init();
-  reset();
-  fill(20,20,20);
-  rect(-2, -2, width+4, height+4);
-  let button = select('#start');
-  button.mousePressed(clearScreen);
-  let gliderButton = select('#glider');
-  gliderButton.mousePressed(function() {insertLife(glider);});
-  let lightweightButton = select('#lightweight');
-  lightweightButton.mousePressed(function() {insertLife(lightweight);});
-  let mediumweightButton = select('#mediumweight');
-  mediumweightButton.mousePressed(function() {insertLife(mediumweight);});
-  let heavyweightButton = select('#heavyweight');
-  heavyweightButton.mousePressed(function() {insertLife(heavyweight);});
-  let coeButton = select('#coe');
-  coeButton.mousePressed(function() {insertLife(coe);});
-  let ecologistButton = select('#ecologist');
-  ecologistButton.mousePressed(function() {insertLife(ecologist);});
-  let flotillaButton = select('#flotilla');
-  flotillaButton.mousePressed(function() {insertLife(flotilla);});
-  let hammerheadButton = select('#hammerhead');
-  hammerheadButton.mousePressed(function() {insertLife(hammerhead);});
-  let hivenudgerButton = select('#hivenudger');
-  hivenudgerButton.mousePressed(function() {insertLife(hivenudger);});
-  let puffertrainButton = select('#puffertrain');
-  puffertrainButton.mousePressed(function() {insertLife(puffertrain);});
-  let puffsuppressorButton = select('#puffsuppressor');
-  puffsuppressorButton.mousePressed(function() {insertLife(puffsuppressor);});
-  frameRate(20);
-}
+  p.setup = function() {
+    p.createCanvas(720, 560);
+    p.spacer = 10;
+    p.init();
+    p.reset();
+    p.fill(20,20,20);
+    p.rect(-2, -2, p.width+4, p.height+4);
+    p.frameRate(20);
+  }
 
-function draw() {
-    fill(20,20,20);
-    rect(-2, -2, width+4, height+4);
-    stroke(0,0,0);
-    fill(0,150,0);
-    display();
-    applyRule();
-}
-
-function init() {
-    for (let x = -10; x <= (width/spacer)+10; x += 1) {
-    distances[x] = []; // create nested array
-    distance2[x] = []
-    for (let y = -10; y < (height/spacer)+10; y += 1) {
-      distances[x][y] = 0;
-      distance2[x][y] = 0;
+  p.draw = function() {
+    if (on==1) {
+      p.fill(20,20,20);
+      p.rect(-2, -2, p.width+4, p.height+4);
+      p.stroke(0,0,0);
+      p.fill(0,150,0);
+      p.display();
+      p.applyRule();
     }
   }
-}
 
-function reset() {
-  clearScreen();
-  insertLife();
-}
-
-function clearScreen() {
-  for (let x = -10; x < (width/spacer)+10; x += 1) {
-    for (let y = -10; y < (height/spacer)+10; y += 1) {
-      distances[x][y] = 0;
-    }
-  }
-}
-
-function display() {
-  for (let x = 0; x < (width/spacer); x += 1) {
-      for (let y = 0; y < (height/spacer); y += 1) {
-        if (distances[x][y] ==1) {
-          square(x*spacer, y*spacer,spacer*0.8,spacer*0.2);
-        }
+  p.init = function() {
+      for (x = 0; x < (p.width/p.spacer); x += 1) {
+      p.distances[x] = []; // create nested array
+      p.distance2[x] = []
+      for (y = 0; y < (p.height/p.spacer); y += 1) {
+        p.distances[x][y] = 0;
+        p.distance2[x][y] = 0;
       }
     }
+  }
+
+  p.reset = function() {
+    p.clearScreen();
+    p.insertLife();
+  }
+
+  p.clearScreen = function() {
+    for (x = 0; x < (p.width/p.spacer); x += 1) {
+      for (y = 0; y < (p.height/p.spacer); y += 1) {
+        p.distances[x][y] = 0;
+      }
+    }
+  }
+
+  p.display = function() {
+    for (x = 0; x < (p.width/p.spacer); x += 1) {
+        for (y = 0; y < (p.height/p.spacer); y += 1) {
+          if (p.distances[x][y] ==1) {
+            p.square(x*p.spacer, y*p.spacer,p.spacer*0.8,p.spacer*0.2);
+          }
+        }
+      }
+  }
+
+  p.applyRule = function() {
+    for (x = 0; x < (p.width/p.spacer); x += 1) {
+      for (y = 0; y < (p.height/p.spacer); y += 1) {
+        p.distance2[x][y] = p.distances[x][y];
+      }
+    }
+    p.simHeight = p.distances[0].length;
+    p.simLength = p.distances.length;
+    for (y = 0; y < p.simHeight; y += 1) {
+      for (x = 0; x < p.simLength; x++) {
+        // Any live cell with fewer than two live neighbours dies, as if by underpopulation
+          if((p.distances[x][y]==1)
+            &&((p.distances[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x-1+p.simLength)%p.simLength][y]
+            +p.distances[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][y]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])<(2))) {p.distance2[x][y]=0}
+        // Any live cell with two or three live neighbours lives on to the next generation
+          if((p.distances[x][y]==1)
+            &&((p.distances[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x-1+p.simLength)%p.simLength][y]
+            +p.distances[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][y]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])==(2||3))) {p.distance2[x][y]=1}
+        // Any live cell with more than three live neighbours dies, as if by overpopulation
+          if((p.distances[x][y]==1)
+            &&((p.distances[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x-1+p.simLength)%p.simLength][y]
+            +p.distances[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][y]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])>(3))) {p.distance2[x][y]=0}
+        // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+          if((p.distances[x][y]==0)
+            &&((p.distances[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x-1+p.simLength)%p.simLength][y]
+            +p.distances[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[x][(y-1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.distances[(x+1+p.simLength)%p.simLength][y]
+            +p.distances[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])==(3))) {p.distance2[x][y]=1}
+      }
+    }
+    for (x = 0; x < (p.width/p.spacer); x += 1) {
+      for (y = 0; y < (p.height/p.spacer); y += 1) {
+        // Outside area cell disapear
+       p.distances[x][y] = p.distance2[x][y];
+      }
+    }
+  }
+
+  p.insertLife = function(lifeformInstance=lifeform,xOffset = p.int(p.width/p.spacer/2), yOffset = p.int(p.height/p.spacer/2)) {
+      for (x = 0; x < lifeformInstance.length; x += 1) {
+      for (y = 0; y < lifeformInstance[0].length; y += 1) {
+        p.distances[xOffset+x-p.int(lifeformInstance.length/2)][yOffset+y-p.int(lifeformInstance[0].length/2)] = lifeformInstance[x][y];
+      }
+    }
+  }
 }
 
-function applyRule() {
-  for (let x = -10; x <= (width/spacer)+10; x += 1) {
-    for (let y = -10; y < (height/spacer)+10; y += 1) {
-      distance2[x][y] = distances[x][y];
-    }
-  }
-  for (let y = -9; y < (height/spacer)+9; y += 1) {
-    for (let x = -9; x < (width/spacer)+9; x++) {
-      // Any live cell with fewer than two live neighbours dies, as if by underpopulation
-        if((distances[x][y]==1)
-          &&((distances[x-1][y+1]
-          +distances[x-1][y]
-          +distances[x-1][y-1]
-          +distances[x][y+1]
-          +distances[x][y-1]
-          +distances[x+1][y+1]
-          +distances[x+1][y]
-          +distances[x+1][y-1])<(2))) {distance2[x][y]=0}
-      // Any live cell with two or three live neighbours lives on to the next generation
-        if((distances[x][y]==1)
-          &&((distances[x-1][y+1]
-          +distances[x-1][y]
-          +distances[x-1][y-1]
-          +distances[x][y+1]
-          +distances[x][y-1]
-          +distances[x+1][y+1]
-          +distances[x+1][y]
-          +distances[x+1][y-1])==(2||3))) {distance2[x][y]=1}
-      // Any live cell with more than three live neighbours dies, as if by overpopulation
-        if((distances[x][y]==1)
-          &&((distances[x-1][y+1]
-          +distances[x-1][y]
-          +distances[x-1][y-1]
-          +distances[x][y+1]
-          +distances[x][y-1]
-          +distances[x+1][y+1]
-          +distances[x+1][y]
-          +distances[x+1][y-1])>(3))) {distance2[x][y]=0}
-      // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
-        if((distances[x][y]==0)
-          &&((distances[x-1][y+1]
-          +distances[x-1][y]
-          +distances[x-1][y-1]
-          +distances[x][y+1]
-          +distances[x][y-1]
-          +distances[x+1][y+1]
-          +distances[x+1][y]
-          +distances[x+1][y-1])==(3))) {distance2[x][y]=1}
-    }
-  }
-  for (let x = -10; x <= (width/spacer)+10; x += 1) {
-    for (let y = -10; y < (height/spacer)+10; y += 1) {
-      // Outside area cell disapear
-      if((x<-5)||(x>(width/spacer+5))||(y<-5)||(y>(height/spacer+5))) {distances[x][y]=0}
-      distances[x][y] = distance2[x][y];
-    }
-  }
+let lifeform = hammerhead;
+let on = 1;
+myp5 = new p5(s, 'canvas1');
+
+function turnon(lifein=glider) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
 }
 
-function insertLife(lifeformInstance=hammerhead,xOffset = int(width/spacer/2), yOffset = int(height/spacer/2)) {
-    for (let x = 0; x < lifeformInstance.length; x += 1) {
-    for (let y = 0; y < lifeformInstance[0].length; y += 1) {
-      distances[xOffset+x-int(lifeformInstance.length/2)][yOffset+y-int(lifeformInstance[0].length/2)] = lifeformInstance[x][y];
-    }
-  }
-}

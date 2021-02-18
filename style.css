@@ -5,6 +5,7 @@ body{
         padding-top: 0;
         text-align: center;
         color: #d2d4d9;
+        background-color:#141414;
 }
 
 #heading{
@@ -286,3 +287,19 @@ a:hover {
   height: 25px;
   background: #4CAF50;
   cursor: pointer;
+}
+
+.background{
+  position: fixed;
+  z-index:-5;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.narrow {
+          text-align: center;
+}
+
+.long{
+  height: 400px;
+}

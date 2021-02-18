@@ -1,4 +1,4 @@
-# CellularAutomata
+# Emergence
  
-Implemented a couple of Cellular Automata at:
+Personal repo about structures and their emergin properties:
 https://fiacrerougieux.github.io/emergence/

@@ -92,13 +92,13 @@ font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
   color: white;
 }
 
-a {
-    color: #3944FF;
+a { 
+    text-decoration: none;
+    color: #58a6ff;
 }
 
 a:hover {
-  background-color: #ddd;
-  color: black;
+  text-decoration: underline;
 }
 
 .previous {
@@ -306,13 +306,12 @@ a:hover {
 
 
 #toc_container {
-    border: 1px solid #aaa;
     display: table;
-    font-size: 95%;
+    font-size: 160%;
     padding: 20px;
     margin: 0 auto;
     left: 50%;
-
+    text-align:left;
 }
 
 .toc_title {

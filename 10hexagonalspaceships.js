@@ -50,13 +50,13 @@ const s = ( p ) => {
 
   p.reset = function() {
     p.clearScreen();
-    //p.insertLife();
+        p.insertLife();
   }
 
   p.clearScreen = function() {
     for (x = 0; x < (p.width/p.spacer); x += 1) {
       for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.alive[x][y] = p.int(p.random(1.8));
+        p.alive[x][y] = 0;//p.int(p.random(1.01));
       }
     }
   }
@@ -137,5 +137,20 @@ const s = ( p ) => {
   }
 }
 
+let spaceship = [[0,0,0,0,0,0,1,0,0,0,0],
+                [0,0,0,1,0,0,0,0,0,0,0],
+                [1,0,0,0,0,0,1,0,0,0,1],
+                [0,0,0,0,0,0,0,0,0,0,0],
+                [1,0,0,0,0,0,1,0,0,0,1],
+                [0,0,0,1,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,0,0,0,0]]
+
+let lifeform = spaceship;
+let on = 1;
 myp5 = new p5(s, 'canvas1');
 
+function turnon(lifein=spaceship) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}

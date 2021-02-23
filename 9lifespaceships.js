@@ -18,12 +18,14 @@ const s = ( p ) => {
   }
 
   p.draw = function() {
-    p.fill(20,20,20);
-    p.rect(-2, -2, p.width+4, p.height+4);
-    p.stroke(0,0,0);
-    p.fill(0,150,0);
-    p.display();
-    p.applyRule();
+    if (on==1) {
+      p.fill(20,20,20);
+      p.rect(-2, -2, p.width+4, p.height+4);
+      p.stroke(0,0,0);
+      p.fill(0,150,0);
+      p.display();
+      p.applyRule();
+    }
   }
 
   p.init = function() {
@@ -39,13 +41,13 @@ const s = ( p ) => {
 
   p.reset = function() {
     p.clearScreen();
-    //p.insertLife();
+    p.insertLife();
   }
 
   p.clearScreen = function() {
     for (x = 0; x < (p.width/p.spacer); x += 1) {
       for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.distances[x][y] = p.int(p.random(1.3));
+        p.distances[x][y] = 0;
       }
     }
   }
@@ -129,4 +131,13 @@ const s = ( p ) => {
   }
 }
 
+let lifeform = hammerhead;
+let on = 1;
 myp5 = new p5(s, 'canvas1');
+
+function turnon(lifein=glider) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}
+

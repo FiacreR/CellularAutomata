@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Cellular Automata</title>
+  <title>Hexagonal.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,23 +41,56 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="lifeforms.js"></script>
-<script type="text/javascript" src="5life.js"></script>
+<script type="text/javascript" src="11hexagonaloscillators.js"></script>
 
 <div id="canvas1" class="background" ></div>
-<p onmouseover="turnon(glider);">
-<section>
+<p onmouseover="turnon(spinner);">
+<section  class="narrow" onmouseover="turnon(spinner);">
 <hr>
-<h2>Rule 2,3/3, Conway's life: Random soup</h2>
+<h2>spinner</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
 
-<p>The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
-<br>
-Source: <a href="https://www.conwaylife.com/ref/lexicon/lex.htm">The life lexicon</a>.
+<p onmouseover="turnon(smiley);">
+<section  class="narrow" onmouseover="turnon(smiley);">
+<hr>
+<h2>smiley</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
 
+<p onmouseover="turnon(arrow);">
+<section  class="narrow" onmouseover="turnon(arrow);">
+<hr>
+<h2>arrow</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(cephid);">
+<section  class="narrow" onmouseover="turnon(cephid);">
+<hr>
+<h2>cephid</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(supernova);">
+<section  class="narrow" onmouseover="turnon(supernova);">
+<hr>
+<h2>supernova</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p>
+The last one is nost quite an oscillator. The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
+</p>
 </body>
 </html>

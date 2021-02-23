@@ -9,19 +9,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
 </head>
 <body>
-<div class="topnav" id="myTopnav">
-  <a href="http://fiacrerougieux.github.io/personal/">Home</a>
-  <a href="index.html">Intro</a>
-  <a href="1elementary.html">Elementary</a>
-  <a href="2totalistic.html">Totalistic</a> 
-  <a href="3continuous.html" class="active">Continuous</a> 
-  <a href="4stochastic.html">Stochastic</a> 
-  <a href="5life.html">Lifeforms</a> 
-  <a href="7brianbrain.html">Brian</a> 
-  <a href="8hexagonal.html">Hexagonal</a>
-  <a href="6forestfire.html">Forest</a> 
+<span style="font-size:30px;cursor:pointer;  position: fixed;top: 0;" onclick="openNav()">&#9776; Content</span>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Table of content</a>
+    <a href="1elementary.html">A. One dimensional cellular automata</a>
+        <a href="2totalistic.html">1 Totalistic</a>
+          <a href="1elementary.html">2 Elementary</a>
+        <a href="3continuous.html">3 Continuous</a>
+        <a href="4stochastic.html">4 Stochastic</a>
+    <a href="7brianbrain.html">B. Two dimensional cellular automata:</a>
+          <a href="7brianbrain.html">1 Totalistic</a>
+            <a href="7brianbrain.html">1.1 Square tessellation</a>
+                            <a href="5life.html">1.1.1 Rule 2,3/3: Conway's life</a>
+                    <a href="5life.html">1.1.1.1 Random soup</a>
+                    <a href="9lifespaceships.html">1.1.1.2 Spaceships</a>
+                <a href="7brianbrain.html">1.1.2 Brian's brain</a>
+                            <a href="6forestfire.html">1.1.3 Forest fire</a>
+            <a href="8hexagonal.html">1.2 Hexagonal tessellation</a>
+                <a href="8hexagonal.html">1.2.1 Rule 3/2</a>
+                    <a href="8hexagonal.html">1.2.1.1 Random soup</a>
+                    <a href="10hexagonalspaceships.html">1.2.1.2 Spaceships</a>
+                    <a href="11hexagonaloscillators.html">1.2.1.2 Oscillators</a>
 </div>
-
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "450px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<br>
 <section class="box-dark">
 <h2>Continous Cellular Automata.</h2>
 <script type="text/javascript" src="3continuous.js"></script>

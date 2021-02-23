@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
+  <title>Cellular Automata</title>
+  <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+</head>
+<body>
+<span style="font-size:30px;cursor:pointer;  position: fixed;top: 0;" onclick="openNav()">&#9776; Content</span>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Table of content</a>
+    <a href="1elementary.html">A. One dimensional cellular automata</a>
+        <a href="2totalistic.html">1 Totalistic</a>
+          <a href="1elementary.html">2 Elementary</a>
+        <a href="3continuous.html">3 Continuous</a>
+        <a href="4stochastic.html">4 Stochastic</a>
+    <a href="7brianbrain.html">B. Two dimensional cellular automata:</a>
+          <a href="7brianbrain.html">1 Totalistic</a>
+            <a href="7brianbrain.html">1.1 Square tessellation</a>
+                            <a href="5life.html">1.1.1 Rule 2,3/3: Conway's life</a>
+                    <a href="5life.html">1.1.1.1 Random soup</a>
+                    <a href="9lifespaceships.html">1.1.1.2 Spaceships</a>
+                <a href="7brianbrain.html">1.1.2 Brian's brain</a>
+                            <a href="6forestfire.html">1.1.3 Forest fire</a>
+            <a href="8hexagonal.html">1.2 Hexagonal tessellation</a>
+                <a href="8hexagonal.html">1.2.1 Rule 3/2</a>
+                    <a href="8hexagonal.html">1.2.1.1 Random soup</a>
+                    <a href="10hexagonalspaceships.html">1.2.1.2 Spaceships</a>
+                    <a href="11hexagonaloscillators.html">1.2.1.2 Oscillators</a>
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "450px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<br>
+<script type="text/javascript" src="lifeforms.js"></script>
+<script type="text/javascript" src="9lifespaceships.js"></script>
+
+<div id="canvas1" class="background" ></div>
+<p onmouseover="turnon(glider);">
+<section  class="narrow" onmouseover="turnon(glider);">
+<hr>
+<h2>glider</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(lightweight);">
+<section  class="narrow" onmouseover="turnon(lightweight);">
+<hr>
+<h2>lightweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(mediumweight);">
+<section  class="narrow" onmouseover="turnon(mediumweight);">
+<hr>
+<h2>mediumweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(heavyweight);">
+<section  class="narrow" onmouseover="turnon(heavyweight);">
+<hr>
+<h2>heavyweight</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(hammerhead);">
+<section  class="narrow" onmouseover="turnon(hammerhead);">
+<hr>
+<h2>hammerhead</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(flotilla);">
+<section  class="narrow" onmouseover="turnon(flotilla);">
+<hr>
+<h2>flotilla</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(hivenudger);">
+<section  class="narrow" onmouseover="turnon(hivenudger);">
+<hr>
+<h2>hivenudger</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p id="puffertrain" onmouseover="turnon(puffertrain);">
+<section  class="narrow" onmouseover="turnon(puffertrain);">
+<hr>
+<h2>puffertrain</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(puffsuppressor);">
+<section  class="narrow" onmouseover="turnon(puffsuppressor);">
+<hr>
+<h2>puffsuppressor</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(brain);">
+<section  class="narrow" onmouseover="turnon(brain);">
+<hr>
+<h2>brain</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(dart);">
+<section  class="narrow" onmouseover="turnon(dart);">
+<hr>
+<h2>dart</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(edgerepair);">
+<section  class="narrow" onmouseover="turnon(edgerepair);">
+<hr>
+<h2>edgerepair</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(fly);">
+<section  class="narrow" onmouseover="turnon(fly);">
+<hr>
+<h2>fly</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(turtle);">
+<section  class="narrow" onmouseover="turnon(turtle);">
+<hr>
+<h2>turtle</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(wasp);">
+<section  class="narrow" onmouseover="turnon(wasp);">
+<hr>
+<h2>wasp</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p>Please see <a href="https://www.conwaylife.com/ref/lexicon/lex.htm">The life lexicon.</a>.</p>
+
+</body>
+</html>

@@ -363,3 +363,12 @@ a:hover {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+.clickable { 
+    color: #52a6ff;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}

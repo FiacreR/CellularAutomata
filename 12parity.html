@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Hexagonal.</title>
+  <title>Cellular Automata</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,19 +44,20 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="8hexagonal.js"></script>
+<script type="text/javascript" src="12parity.js"></script>
 
 <div id="canvas1" class="background" ></div>
 <p>
 <section>
 <hr>
-<h2>Hexagonal 3/2: Random soup</h2>
+<h2>parity rule</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
-<p>
-The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
-</p>
+
+
+<p>Parity rule: a cell becomes alive if the number of neighbours is odd and dies if the number of neighbours is even.</p>
+
 </body>
 </html>

@@ -292,8 +292,9 @@ a:hover {
 .background{
   position: fixed;
   z-index:-5;
-    left: 50%;
-    transform: translateX(-50%);
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
 }
 
 .narrow {

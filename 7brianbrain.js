@@ -27,18 +27,10 @@ const s = ( p ) => {
   }
 
   p.init = function() {
-      for (x = 0; x < (p.width/p.spacer); x += 1) {
-      p.alive[x] = []; // create nested array
-      p.aliveTemp[x] = [];
-      p.dying[x] = [];
-      p.dyingTemp[x] = [];
-      for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.alive[x][y] = 0;
-        p.aliveTemp[x][y] = 0;
-        p.dying[x][y] = 0;
-        p.dyingTemp[x][y] = 0;
-      }
-    }
+    p.alive = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.dying = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.dyingTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
   }
 
   p.reset = function() {

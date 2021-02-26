@@ -1,5 +1,5 @@
-let distances = [];
-let resetdistances = [];
+let alive = [];
+let resetalive = [];
 let maxDistance;
 let spacer;
 let rule;
@@ -11,7 +11,7 @@ function setup() {
   canvas.parent('canvasForHTML');
   spacer = 10;
   newset();
-  distances[int(width/spacer/2)-1][0] = 1;
+  alive[int(width/spacer/2)-1][0] = 1;
   fill(20,20,20);
   rect(-2, -2, width+4, height+4);
 
@@ -36,11 +36,11 @@ function draw() {
 
 function newset() {
     for (let x = 0; x <= (width/spacer); x += 1) {
-    distances[x] = []; // create nested array
-    resetdistances[x] = [];
+    alive[x] = []; // create nested array
+    resetalive[x] = [];
     for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = 0;
-      resetdistances[x][y] = 0;
+      alive[x][y] = 0;
+      resetalive[x][y] = 0;
     }
   }
 }
@@ -48,8 +48,8 @@ function newset() {
 function reset() {
     for (let x = 0; x <= (width/spacer); x += 1) {
     for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = 0;
-      distances[int(width/spacer/2)-1][0] = 1;
+      alive[x][y] = 0;
+      alive[int(width/spacer/2)-1][0] = 1;
     }
   }
 }
@@ -57,7 +57,7 @@ function reset() {
 function display() {
   for (let x = 0; x < (width/spacer); x += 1) {
       for (let y = 0; y < (height/spacer); y += 1) {
-          fill(0,150*distances[x][y],0);
+          fill(0,150*alive[x][y],0);
           square(x*spacer, y*spacer,8,2);
       }
     }
@@ -66,18 +66,18 @@ function display() {
 function moveDown() {
     for (let y = (height/spacer); y >= 0; y--) {
     for (let x = 0; x < (width/spacer); x++) {
-      distances[x][y+1] = distances[x][y]
+      alive[x][y+1] = alive[x][y]
     }
   }
 }
 
 function applyRule() {
     for (let x = 1; x < (width/spacer)-1; x++) {
-        distances[x][0] = ((distances[x-1][1]+distances[x][1]+distances[x+1][1]) + offset)%1;
+        alive[x][0] = ((alive[x-1][1]+alive[x][1]+alive[x+1][1]) + offset)%1;
     }
     // x = 0  
-    distances[0][0] = ((distances[width/spacer][1]+distances[0][1]+distances[1][1])+offset)%1;
+    alive[0][0] = ((alive[width/spacer][1]+alive[0][1]+alive[1][1])+offset)%1;
 
     // x = width/spacer
-    distances[width/spacer][0]= ((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])+offset)%1;
+    alive[width/spacer][0]= ((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])+offset)%1;
 }

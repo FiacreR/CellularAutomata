@@ -1,6 +1,6 @@
 const s = ( p ) => {
   p.fire = [];
-  p.fire2 = [];
+  p.fireTemp = [];
   p.alive = [];
   p.maxDistance;
   p.spacer;
@@ -26,16 +26,9 @@ const s = ( p ) => {
   }
 
   p.init = function() {
-      for (x = 0; x < (p.width/p.spacer); x += 1) {
-      p.fire[x] = []; // create nested array
-      p.fire2[x] = [];
-      p.alive[x] = [];
-      for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.fire[x][y] = 0;
-        p.fire2[x][y] = 0;
-        p.alive[x][y] = 0;
-      }
-    }
+    p.alive = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.fire = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.fireTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
   }
 
   p.reset = function() {
@@ -45,7 +38,7 @@ const s = ( p ) => {
   p.clearScreen = function() {
     for (x = 0; x < (p.width/p.spacer); x += 1) {
       for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.alive[x][y] = 0;
+        p.alive[x][y] = p.int(p.random(1.8));
       }
     }
   }
@@ -68,7 +61,7 @@ const s = ( p ) => {
   p.applyRule = function() {
     for (x = 0; x < (p.width/p.spacer); x += 1) {
       for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.fire2[x][y] = p.fire[x][y];
+        p.fireTemp[x][y] = p.fire[x][y];
       }
     }
     p.simHeight = p.fire[0].length;
@@ -86,13 +79,13 @@ const s = ( p ) => {
             +p.fire[(x+1+p.simLength)%p.simLength][y]
             +p.fire[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])>=(1))) {
             console.log("yes")
-            p.fire2[x][y]=p.fire2[x][y]+1}
+            p.fireTemp[x][y]=p.fireTemp[x][y]+1}
      }
     }
     for (x = 0; x < (p.width/p.spacer); x += 1) {
       for (y = 0; y < (p.height/p.spacer); y += 1) {
         // Outside area cell disapear
-       p.fire[x][y] = p.fire2[x][y];
+       p.fire[x][y] = p.fireTemp[x][y];
        if (p.alive[x][y]>=1) {
           p.alive[x][y] = p.alive[x][y]+1;
           if (p.random(1)<0.00002) {

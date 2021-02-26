@@ -1,5 +1,5 @@
-let distances = [];
-let resetdistances = [];
+let alive = [];
+let resetalive = [];
 let maxDistance;
 let spacer;
 let rule;
@@ -10,7 +10,7 @@ function setup() {
   canvas.parent('canvasForHTML');
   spacer = 10;
   newset();
-  distances[int(width/spacer/2)-1][0] = 1;
+  alive[int(width/spacer/2)-1][0] = 1;
   fill(20,20,20);
   rect(-2, -2, width+4, height+4);
 
@@ -48,11 +48,11 @@ function draw() {
 
 function newset() {
     for (let x = 0; x <= (width/spacer); x += 1) {
-    distances[x] = []; // create nested array
-    resetdistances[x] = [];
+    alive[x] = []; // create nested array
+    resetalive[x] = [];
     for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = 0;
-      resetdistances[x][y] = 0;
+      alive[x][y] = 0;
+      resetalive[x][y] = 0;
     }
   }
 }
@@ -60,8 +60,8 @@ function newset() {
 function reset() {
     for (let x = 0; x <= (width/spacer); x += 1) {
     for (let y = 0; y < (height/spacer); y += 1) {
-      distances[x][y] = 0;
-      distances[int(width/spacer/2)-1][0] = 1;
+      alive[x][y] = 0;
+      alive[int(width/spacer/2)-1][0] = 1;
     }
   }
 }
@@ -103,11 +103,11 @@ function ruleNumberToRules(val, res = '') {
 function display() {
   for (let x = 0; x < (width/spacer); x += 1) {
       for (let y = 0; y < (height/spacer); y += 1) {
-        if (distances[x][y] ==1) {
+        if (alive[x][y] ==1) {
           fill(0,75,0);
           square(x*spacer, y*spacer,8,2);
         }
-        if (distances[x][y] ==2) {
+        if (alive[x][y] ==2) {
           fill(0,150,0);
           square(x*spacer, y*spacer,8,2);
         }
@@ -119,35 +119,35 @@ function display() {
 function moveDown() {
     for (let y = (height/spacer); y >= 0; y--) {
     for (let x = 0; x < (width/spacer); x++) {
-      distances[x][y+1] = distances[x][y]
+      alive[x][y+1] = alive[x][y]
     }
   }
 }
 
 function applyRule() {
     for (let x = 1; x < (width/spacer)-1; x++) {
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==6) {distances[x][0] = rule[0]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==5) {distances[x][0] = rule[1]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==4) {distances[x][0] = rule[2]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==3) {distances[x][0] = rule[3]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==2) {distances[x][0] = rule[4]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==1) {distances[x][0] = rule[5]}
-        if((distances[x-1][1]+distances[x][1]+distances[x+1][1])==0) {distances[x][0] = rule[6]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==6) {alive[x][0] = rule[0]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==5) {alive[x][0] = rule[1]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==4) {alive[x][0] = rule[2]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==3) {alive[x][0] = rule[3]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==2) {alive[x][0] = rule[4]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==1) {alive[x][0] = rule[5]}
+        if((alive[x-1][1]+alive[x][1]+alive[x+1][1])==0) {alive[x][0] = rule[6]}
     }
     // x = 0  
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==6) {distances[0][0] = rule[0]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==5) {distances[0][0] = rule[1]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==4) {distances[0][0] = rule[2]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==3) {distances[0][0] = rule[3]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==2) {distances[0][0] = rule[4]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==1) {distances[0][0] = rule[5]}
-        if((distances[width/spacer][1]+distances[0][1]+distances[1][1])==0) {distances[0][0] = rule[6]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==6) {alive[0][0] = rule[0]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==5) {alive[0][0] = rule[1]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==4) {alive[0][0] = rule[2]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==3) {alive[0][0] = rule[3]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==2) {alive[0][0] = rule[4]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==1) {alive[0][0] = rule[5]}
+        if((alive[width/spacer][1]+alive[0][1]+alive[1][1])==0) {alive[0][0] = rule[6]}
     // x = width/spacer
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==6) {distances[width/spacer][0] = rule[0]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==5) {distances[width/spacer][0] = rule[1]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==4) {distances[width/spacer][0] = rule[2]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==3) {distances[width/spacer][0] = rule[3]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==2) {distances[width/spacer][0] = rule[4]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==1) {distances[width/spacer][0] = rule[5]}
-        if((distances[width/spacer-1][1]+distances[width/spacer][1]+distances[0][1])==0) {distances[width/spacer][0] = rule[6]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==6) {alive[width/spacer][0] = rule[0]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==5) {alive[width/spacer][0] = rule[1]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==4) {alive[width/spacer][0] = rule[2]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==3) {alive[width/spacer][0] = rule[3]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==2) {alive[width/spacer][0] = rule[4]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==1) {alive[width/spacer][0] = rule[5]}
+        if((alive[width/spacer-1][1]+alive[width/spacer][1]+alive[0][1])==0) {alive[width/spacer][0] = rule[6]}
 }

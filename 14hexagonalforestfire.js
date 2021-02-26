@@ -34,18 +34,10 @@ const s = ( p ) => {
   }
 
   p.init = function() {
-      for (x = 0; x < (p.width/p.spacer); x += 1) {
-      p.alive[x] = []; // create nested array
-      p.aliveTemp[x] = [];
-      p.fire[x] = [];
-      p.fireTemp[x] = [];
-      for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.alive[x][y] = 0;
-        p.aliveTemp[x][y] = 0;
-        p.fire[x][y] = 0;
-        p.fireTemp[x][y] = 0;
-      }
-    }
+    p.alive = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.fire = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.fireTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
   }
 
   p.reset = function() {

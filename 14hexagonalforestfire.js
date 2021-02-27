@@ -16,8 +16,6 @@ const s = ( p ) => {
   p.setup = function() {
     p.createCanvas(720, 560);
     p.spacer = 8;
-    p.xspacer = 
-    p.yspacer 
     p.init();
     p.reset();
     p.fill(20,20,20);

@@ -55,7 +55,22 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="16triangularspaceships.js"></script>
+<script type="text/javascript" src="15triangular.js"></script>
+<script>
+lifeform = [[0,0,0,0,0,1],
+            [0,0,0,1,1,1],
+            [0,0,0,1,1,1],
+            [0,0,0,0,0,1],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0]]
+myp5 = new p5(s, 'canvas1');
+
+function turnon(lifein=spaceship1) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}
+</script>
 
 <div id="canvas1" class="background" ></div>
 <p onmouseover="turnon(spaceship1);">

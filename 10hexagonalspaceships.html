@@ -57,7 +57,26 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="10hexagonalspaceships.js"></script>
+<script>
+let spaceship = [[0,0,0,0,0,0,1,0,0,0,0],
+                [0,0,0,1,0,0,0,0,0,0,0],
+                [1,0,0,0,0,0,1,0,0,0,1],
+                [0,0,0,0,0,0,0,0,0,0,0],
+                [1,0,0,0,0,0,1,0,0,0,1],
+                [0,0,0,1,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,0,0,0,0]];
+</script>
+<script type="text/javascript" src="8hexagonal.js"></script>
+<script>
+let lifeform = spaceship;
+myp5 = new p5(s, 'canvas1');
+
+function turnon(lifein=spaceship) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}
+</script>
 
 <div id="canvas1" class="background" ></div>
 <p onmouseover="turnon(spaceship);">

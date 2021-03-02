@@ -10,12 +10,13 @@ const s = ( p ) => {
   p.ruleN = 90;
   p.sx;
   p.sy;
+  p.total = [];
 
   p.setup = function() {
     p.createCanvas(720, 560);
     p.spacer = 10;
     p.init();
-    p.reset();
+    p.insertLife();
     p.fill(20,20,20);
     p.rect(-2, -2, p.width+4, p.height+4);
     p.frameRate(20);
@@ -32,19 +33,7 @@ const s = ( p ) => {
   p.init = function() {
     p.alive = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
     p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
-  }
-
-  p.reset = function() {
-    p.clearScreen();
-    //p.insertLife();
-  }
-
-  p.clearScreen = function() {
-    for (x = 0; x < (p.width/p.spacer); x += 1) {
-      for (y = 0; y < (p.height/p.spacer); y += 1) {
-        p.alive[x][y] = p.int(p.random(1.8));
-      }
-    }
+    p.total = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
   }
 
   p.display = function() {
@@ -87,40 +76,31 @@ const s = ( p ) => {
     p.simLength = p.alive.length;
     for (y = 0; y < p.simHeight; y += 1) {
       for (x = 0; x < p.simLength; x+= 1) {
+        p.total[x][y] = (p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
+            +p.alive[x][(y+2+p.simHeight)%p.simHeight]
+            +p.alive[x][(y-2+p.simHeight)%p.simHeight]
+            +p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
+            +p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]);
         // Any dead cell with two living neighbours becomes alive
-          if((p.alive[x][y]==0)
-            &&((p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
-            +p.alive[x][(y+2+p.simHeight)%p.simHeight]
-            +p.alive[x][(y-2+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])==(2))) {p.aliveTemp[x][y]=1}
+          if((p.alive[x][y]==0)&&(p.total[x][y]==(2))) {p.aliveTemp[x][y]=1}
         // Any living cell with three living neighbours stays alive
-          if((p.alive[x][y]==1)
-            &&((p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
-            +p.alive[x][(y+2+p.simHeight)%p.simHeight]
-            +p.alive[x][(y-2+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight])==(3))) {p.aliveTemp[x][y]=1}
+          if((p.alive[x][y]==1)&&(p.total[x][y]==(3))) {p.aliveTemp[x][y]=1}
       }
     }
-    for (x = 0; x < (p.width/p.spacer); x += 1) {
-      for (y = 0; y < (p.height/p.spacer); y += 1) {
-        // Outside area cell disapear
-       p.alive[x][y] = p.aliveTemp[x][y];
-      }
-    }
+    p.alive = p.aliveTemp.map(function(arr) {return arr.slice();});
   }
 
-  p.insertLife = function(lifeformInstance=lifeform,xOffset = p.int(p.height/p.spacer/2), yOffset = p.int(p.width/p.spacer/2)) {
-      for (x = 0; x < lifeformInstance.length; x += 1) {
+  p.insertLife = function(lifeformInstance=0,xOffset = p.int(p.width/p.spacer/2), yOffset = p.int(p.height/p.spacer/2)) {
+  lifeformInstance=lifeform;
+  if (lifeformInstance==0) {
+    p.alive = p.alive.map(x => x.map(y => p.int(p.random(1.7))))
+  } else {
+    for (x = 0; x < lifeformInstance.length; x += 1) {
       for (y = 0; y < lifeformInstance[0].length; y += 1) {
         p.alive[xOffset+x-p.int(lifeformInstance.length/2)][yOffset+y-p.int(lifeformInstance[0].length/2)] = lifeformInstance[x][y];
       }
     }
   }
+  }
 }
-
-myp5 = new p5(s, 'canvas1');
-

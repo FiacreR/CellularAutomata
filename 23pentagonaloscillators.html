@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Triangular.</title>
+  <title>Pentagonal.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,41 +64,92 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="19triangularparity.js"></script>
+<script type="text/javascript" src="21pentagonal.js"></script>
 <script>
-lifeform = [[0,0,0,0,0,0],
-            [1,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0]]
+let highfive = [[0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,1,0,0,0,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,1,0,0,0,0],
+                [0,0,0,1,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,1,0,0,0,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0]];
+let electric = [[0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,1,0,0,0,0],
+                [0,0,0,1,0,0,0,0,0,0,0,0],
+                [0,0,0,1,0,0,1,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,1,0,0,0,0],
+                [0,0,0,1,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,1,0,0,0,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0]];
+let hummingbird = [[0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,1,0,0,0,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,0,0,0,0,0],
+                [0,0,0,0,0,0,1,1,0,0,0,0],
+                [0,0,0,0,0,0,1,0,0,0,0,0],
+                [0,0,0,1,0,0,1,1,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0]];
+let lifeform = hummingbird;
 myp5 = new p5(s, 'canvas1');
 
+function turnon(lifein=spaceship1) {
+  lifeform=lifein;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}
 </script>
 
 <div id="canvas1" class="background" ></div>
-<p>
-<section>
+<p onmouseover="turnon(hummingbird);">
+<section  class="narrow" onmouseover="turnon(hummingbird);">
 <hr>
-<h2>parity rule</h2>
+<h2 class="clickable">hummingbird</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(highfive);">
+<section  class="narrow" onmouseover="turnon(highfive);">
+<hr>
+<h2 class="clickable">highfive</h2>
+<hr>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
+
+<p onmouseover="turnon(electric);">
+<section  class="narrow" onmouseover="turnon(electric);">
+<hr>
+<h2 class="clickable">electric</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

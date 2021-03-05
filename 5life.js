@@ -41,7 +41,8 @@ const s = ( p ) => {
   }
 
   p.applyRule = function() {
-    p.aliveTemp = p.alive.map(function(arr) {return arr.slice();});
+    p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.total = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
     p.simHeight = p.alive[0].length;
     p.simLength = p.alive.length;
     for (y = 0; y < p.simHeight; y += 1) {
@@ -54,14 +55,12 @@ const s = ( p ) => {
             +p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
             +p.alive[(x+1+p.simLength)%p.simLength][y]
             +p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]);
-        // Any live cell with fewer than two live neighbours dies, as if by underpopulation
-          if((p.alive[x][y]==1)&&(p.total[x][y]<(2))) {p.aliveTemp[x][y]=0}
-        // Any live cell with two or three live neighbours lives on to the next generation
-          if((p.alive[x][y]==1)&&(p.total[x][y]==(2||3))) {p.aliveTemp[x][y]=1}
-        // Any live cell with more than three live neighbours dies, as if by overpopulation
-          if((p.alive[x][y]==1)&&(p.total[x][y]>(3))) {p.aliveTemp[x][y]=0}
-        // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
-          if((p.alive[x][y]==0)&&(p.total[x][y]==(3))) {p.aliveTemp[x][y]=1}
+          if(p.alive[x][y]==1){
+            for (i=0; i<=8;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleKeep[i]}}
+          }
+          if(p.alive[x][y]==0){
+            for (i=0; i<=8;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleBirth[i]}}
+          }
       }
     }
     p.alive = p.aliveTemp.map(function(arr) {return arr.slice();});

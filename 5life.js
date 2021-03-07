@@ -8,12 +8,12 @@ const s = ( p ) => {
 
   p.setup = function() {
     p.createCanvas(720, 560);
-    p.spacer = 10;
+    p.spacer = spaceStep;
     p.init();
     p.insertLife();
     p.fill(20,20,20);
     p.rect(-2, -2, p.width+4, p.height+4);
-    p.frameRate(20);
+    p.frameRate(1/timeStep);
   }
 
   p.draw = function() {

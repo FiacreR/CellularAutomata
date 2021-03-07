@@ -64,7 +64,19 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="12parity.js"></script>
+<script type="text/javascript" src="5life.js"></script>
+<script>
+let timeStep = 0.25;
+let spaceStep = 5;
+let ruleKeep  = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let ruleBirth = [0, 1, 0, 1, 0, 1, 0, 1, 0];
+let numberOfStates = 2;
+let lifeform = [[0,0,0],
+                [0,1,0],
+                [0,0,0]];
+myp5 = new p5(s, 'canvas1');
+myp5.frameRate(20)
+</script>
 
 <div id="canvas1" class="background" ></div>
 <p>

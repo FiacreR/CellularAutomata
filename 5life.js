@@ -4,6 +4,7 @@ const s = ( p ) => {
   p.aliveTemp = [];
   p.spacer;
   p.total = [];
+  p.maxState = numberOfStates - 1;
 
   p.setup = function() {
     p.createCanvas(720, 560);
@@ -19,7 +20,6 @@ const s = ( p ) => {
     p.fill(20,20,20);
     p.rect(-2, -2, p.width+4, p.height+4);
     p.stroke(0,0,0);
-    p.fill(0,150,0);
     p.display();
     p.applyRule();
   }
@@ -33,13 +33,13 @@ const s = ( p ) => {
   p.display = function() {
     p.alive.map(function(x,indexX) {
       x.map(function(y,indexY){
-        if(y==1){
+        if(y>0){
+          p.fill(1.5*(y-1)/p.maxState*250,150,0);
           p.square(indexX*p.spacer, indexY*p.spacer,p.spacer*0.8,p.spacer*0.2);
         }
       })
     })
   }
-
   p.applyRule = function() {
     p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
     p.total = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
@@ -47,17 +47,21 @@ const s = ( p ) => {
     p.simLength = p.alive.length;
     for (y = 0; y < p.simHeight; y += 1) {
       for (x = 0; x < p.simLength; x++) {
-        p.total[x][y] = (p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x-1+p.simLength)%p.simLength][y]
-            +p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]
-            +p.alive[x][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[x][(y-1+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]
-            +p.alive[(x+1+p.simLength)%p.simLength][y]
-            +p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]);
-          if(p.alive[x][y]==1){
-            for (i=0; i<=8;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleKeep[i]}}
+        p.total[x][y]=[p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                      p.alive[(x-1+p.simLength)%p.simLength][y],
+                      p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                      p.alive[x][(y+1+p.simHeight)%p.simHeight],
+                      p.alive[x][(y-1+p.simHeight)%p.simHeight],
+                      p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                      p.alive[(x+1+p.simLength)%p.simLength][y],
+                      p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]]
+                      .filter(elements => elements==1).length
+          if(p.alive[x][y]>1){
+            p.aliveTemp[x][y]=(p.alive[x][y]+1)%numberOfStates;
           }
+          if(p.alive[x][y]==1){
+            for (i=0; i<=8;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=(2-ruleKeep[i])%numberOfStates}}
+            }
           if(p.alive[x][y]==0){
             for (i=0; i<=8;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleBirth[i]}}
           }

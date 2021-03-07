@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
+  <title>Cellular Automata</title>
+  <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+</head>
+<body>
+<span style="font-size:30px;cursor:pointer;  position: fixed;top: 0;" onclick="openNav()">&#9776; Content</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Table of content</a>
+    <a href="1elementary.html">A. One dimensional cellular automata</a>
+    <a href="2totalistic.html">I. Totalistic</a>
+    <a href="1elementary.html">II. Elementary</a>
+    <a href="3continuous.html">III. Continuous</a>
+    <a href="4stochastic.html">IV. Stochastic</a>
+    <br>
+    <a href="7brianbrain.html">B. Two dimensional cellular automata:</a>
+    <a href="7brianbrain.html">I. Totalistic</a>
+    <a href="15triangular.html">1 Triangular tessellation</a>
+    <a href="15triangular.html">&nbsp;&nbsp;1.1 Rule 3,5/4</a>
+    <a href="15triangular.html">&nbsp;&nbsp;&nbsp;&nbsp;1.1.1 Random soup</a>
+    <a href="16triangularspaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;1.1.2 Spaceships</a>
+    <a href="19triangularparity.html">&nbsp;&nbsp;1.2 Parity rule</a>
+    <a href="19triangularparity.html">&nbsp;&nbsp;&nbsp;&nbsp;1.2.1 Parity rule</a>
+    <a href="20triangularmemory.html">&nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Parity rule with memory</a>
+    <br>
+    <a href="24square.html">2 Square tessellation</a>
+    <a href="5life.html">&nbsp;&nbsp;2.1 Rule 2,3/3: Conway's life</a>
+    <a href="5life.html">&nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Random soup</a>
+    <a href="9lifespaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Spaceships</a>
+    <a href="7brianbrain.html">&nbsp;&nbsp;2.2 Brian's brain</a>
+    <a href="12parity.html">&nbsp;&nbsp;2.3 Parity rule</a>
+    <a href="12parity.html">&nbsp;&nbsp;&nbsp;&nbsp;2.3.1 Parity rule</a>
+    <a href="13memory.html">&nbsp;&nbsp;&nbsp;&nbsp;2.3.2 Parity rule with memory</a>
+    <a href="6forestfire.html">&nbsp;&nbsp;2.4 Forest fire</a>
+    <br>
+    <a href="21pentagonal.html">3 Pentagonal tessellation (Cairo)</a>
+    <a href="21pentagonal.html">&nbsp;&nbsp;3.1 Rule 2,4/3,4,6</a>
+    <a href="21pentagonal.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Random soup</a>
+    <a href="22pentagonalspacehips.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Spaceships</a>
+    <a href="23pentagonaloscillators.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 Oscillators</a>
+    <br>
+    <a href="8hexagonal.html">4 Hexagonal tessellation</a>
+    <a href="8hexagonal.html">&nbsp;&nbsp;4.1 Rule 3/2</a>
+    <a href="8hexagonal.html">&nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Random soup</a>
+    <a href="10hexagonalspaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Spaceships</a>
+    <a href="11hexagonaloscillators.html">&nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Oscillators</a>
+    <a href="17hexgonalparity.html">&nbsp;&nbsp;4.2 Parity rule</a>
+    <a href="17hexagonalparity.html">&nbsp;&nbsp;&nbsp;&nbsp;4.2.1 Parity rule</a>
+    <a href="18hexagonalmemory.html">&nbsp;&nbsp;&nbsp;&nbsp;4.2.2 Parity rule with memory</a>
+    <a href="14hexagonalforestfire.html">&nbsp;&nbsp;4.3 Forest fire</a>
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "450px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<br>
+
+<section>
+<hr>
+<h2>Square tessellation</h2>
+<hr>
+</section>
+
+<div id="canvas1"></div>
+<form action="/action_page.php">
+  Number of live neighbors required to keep a living cell alive:<br>
+  <input type="checkbox" id="k0" name="k0" onclick="turnon();">
+  <label for="k0"> 0</label>
+  <input type="checkbox" id="k1" name="k1" onclick="turnon();">
+  <label for="k1"> 1</label>
+  <input type="checkbox" id="k2" name="k2" checked onclick="turnon();">
+  <label for="k2"> 2</label>
+  <input type="checkbox" id="k3" name="k3" checked onclick="turnon();">
+  <label for="k3"> 3</label>
+  <input type="checkbox" id="k4" name="k4" onclick="turnon();">
+  <label for="41"> 4</label>
+  <input type="checkbox" id="k5" name="k5" onclick="turnon();">
+  <label for="k5"> 5</label>
+  <input type="checkbox" id="k6" name="k6" onclick="turnon();">
+  <label for="k6"> 6</label>
+  <input type="checkbox" id="k7" name="k7" onclick="turnon();">
+  <label for="k7"> 7</label>
+  <input type="checkbox" id="k8" name="k8" onclick="turnon();">
+  <label for="k8"> 8</label><br>
+</form> 
+<form action="/action_page.php">
+  Number of live neighbors to bring a non-living cell to life:<br>
+  <input type="checkbox" id="b0" name="b0" onclick="turnon();">
+  <label for="b0"> 0</label>
+  <input type="checkbox" id="b1" name="b1" onclick="turnon();">
+  <label for="b1"> 1</label>
+  <input type="checkbox" id="b2" name="b2" onclick="turnon();">
+  <label for="b2"> 2</label>
+  <input type="checkbox" id="b3" name="b3" checked onclick="turnon();">
+  <label for="b3"> 3</label>
+  <input type="checkbox" id="b4" name="b4" onclick="turnon();">
+  <label for="41"> 4</label>
+  <input type="checkbox" id="b5" name="b5" onclick="turnon();">
+  <label for="b5"> 5</label>
+  <input type="checkbox" id="b6" name="b6" onclick="turnon();">
+  <label for="b6"> 6</label>
+  <input type="checkbox" id="b7" name="b7" onclick="turnon();">
+  <label for="b7"> 7</label>
+  <input type="checkbox" id="b8" name="b8" onclick="turnon();">
+  <label for="b8"> 8</label><br>
+</form> 
+<form action="/action_page.php">
+  Number of states:<br>
+  <input type="radio" name="state" value="2" checked onclick="turnon();">2
+  <input type="radio" name="state" value="3" onclick="turnon();">3
+  <input type="radio" name="state" value="4" onclick="turnon();">4
+  <input type="radio" name="state" value="5" onclick="turnon();">5
+  <input type="radio" name="state" value="6" onclick="turnon();">6
+  <input type="radio" name="state" value="7" onclick="turnon();">7
+  <input type="radio" name="state" value="8" onclick="turnon();">8
+  <input type="radio" name="state" value="9" onclick="turnon();">9
+  <input type="radio" name="state" value="10" onclick="turnon();">10
+</form> 
+
+<script type="text/javascript" src="lifeforms.js"></script>
+<script type="text/javascript" src="5life.js"></script>
+<script>
+var k1 = Number(document.getElementById("k1").checked);  
+console.log(k1)
+let ruleKeep  = [Number(document.getElementById("k0").checked),
+                 Number(document.getElementById("k1").checked),
+                 Number(document.getElementById("k2").checked),
+                 Number(document.getElementById("k3").checked),
+                 Number(document.getElementById("k4").checked),
+                 Number(document.getElementById("k5").checked),
+                 Number(document.getElementById("k6").checked),
+                 Number(document.getElementById("k7").checked),
+                 Number(document.getElementById("k8").checked)];
+let ruleBirth = [Number(document.getElementById("b0").checked),
+                 Number(document.getElementById("b1").checked),
+                 Number(document.getElementById("b2").checked),
+                 Number(document.getElementById("b3").checked),
+                 Number(document.getElementById("b4").checked),
+                 Number(document.getElementById("b5").checked),
+                 Number(document.getElementById("b6").checked),
+                 Number(document.getElementById("b7").checked),
+                 Number(document.getElementById("b8").checked)];
+let numberOfStates = 2;
+var state = document.getElementsByName('state'); 
+for(i = 0; i < state.length; i++) { 
+    if(state[i].checked) 
+      numberOfStates = state[i].value; 
+} 
+let lifeform = 0;
+myp5 = new p5(s, 'canvas1');
+function turnon() {
+    ruleKeep  = [Number(document.getElementById("k0").checked),
+                 Number(document.getElementById("k1").checked),
+                 Number(document.getElementById("k2").checked),
+                 Number(document.getElementById("k3").checked),
+                 Number(document.getElementById("k4").checked),
+                 Number(document.getElementById("k5").checked),
+                 Number(document.getElementById("k6").checked),
+                 Number(document.getElementById("k7").checked),
+                 Number(document.getElementById("k8").checked)];
+    ruleBirth = [Number(document.getElementById("b0").checked),
+                 Number(document.getElementById("b1").checked),
+                 Number(document.getElementById("b2").checked),
+                 Number(document.getElementById("b3").checked),
+                 Number(document.getElementById("b4").checked),
+                 Number(document.getElementById("b5").checked),
+                 Number(document.getElementById("b6").checked),
+                 Number(document.getElementById("b7").checked),
+                 Number(document.getElementById("b8").checked)];
+                state = document.getElementsByName('state'); 
+                for(i = 0; i < state.length; i++) { 
+                    if(state[i].checked) 
+                      numberOfStates = state[i].value; 
+                }                  
+  myp5.insertLife();
+}
+</script>
+<p class="margin">The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
+</p>
+
+</body>
+</html>

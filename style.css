@@ -375,3 +375,8 @@ a:hover {
 .clickable:hover {
   text-decoration: underline;
 }
+
+.margin{
+  padding-right: 80px;
+  padding-left: 80px;
+}

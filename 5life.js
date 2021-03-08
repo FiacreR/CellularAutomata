@@ -5,6 +5,10 @@ const s = ( p ) => {
   p.spacer;
   p.total = [];
   p.maxState = numberOfStates - 1;
+  p.omega = [];
+  p.omegaTminusone = [];
+  p.capOmega;
+  p.iteration = 0;
 
   p.setup = function() {
     p.createCanvas(720, 560);
@@ -28,6 +32,8 @@ const s = ( p ) => {
     p.alive = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
     p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
     p.total = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.omega = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.omegaTminusone = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
    }
 
   p.display = function() {
@@ -67,7 +73,24 @@ const s = ( p ) => {
           }
       }
     }
-    p.alive = p.aliveTemp.map(function(arr) {return arr.slice();});
+    if (memoryFactor==0) {
+          p.alive = p.aliveTemp.map(function(arr) {return arr.slice();});
+    } else {
+          p.iteration += 1;
+          p.capOmega = (p.pow(memoryFactor,p.iteration)-1)/(memoryFactor-1);
+          for (x = 0; x < (p.width/p.spacer); x += 1) {
+            for (y = 0; y < (p.height/p.spacer); y += 1) {
+              p.omega[x][y] = memoryFactor*p.omegaTminusone[x][y] + p.aliveTemp[x][y];
+              if ((p.omega[x][y]/p.capOmega>0.5)) {
+                p.alive[x][y] = 1;
+              }
+              if ((p.omega[x][y]/p.capOmega<0.5)) {
+                p.alive[x][y] = 0;
+              }
+              p.omegaTminusone[x][y]=p.omega[x][y];
+            }
+          }
+    }
   }
 
   p.insertLife = function(lifeformInstance=0,xOffset = p.int(p.width/p.spacer/2), yOffset = p.int(p.height/p.spacer/2)) {

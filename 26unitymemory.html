@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Triangular.</title>
+  <title>Cellular Automata</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,7 +34,7 @@
     <a href="5life.html">&nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Random soup</a>
     <a href="9lifespaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Spaceships</a>
     <a href="7brianbrain.html">&nbsp;&nbsp;2.2 Brian's brain</a>
-   <a href="26unitymemory.html">&nbsp;&nbsp;2.3 Memory</a>
+    <a href="26unitymemory.html">&nbsp;&nbsp;2.3 Memory</a>
     <a href="26unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;2.3.1 Unity rule with memory</a>
     <a href="13memory.html">&nbsp;&nbsp;&nbsp;&nbsp;2.3.2 Parity rule with memory</a>
     <a href="6forestfire.html">&nbsp;&nbsp;2.4 Forest fire</a>
@@ -64,35 +64,33 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="15triangular.js"></script>
+<script type="text/javascript" src="5life.js"></script>
 <script>
-lifeform = [[0,0,0,0,0,1],
-            [0,0,0,1,1,1],
-            [0,0,0,1,1,1],
-            [0,0,0,0,0,1],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0]]
+let timeStep = 0.25;
+let spaceStep = 5;
+let ruleKeep  = [0, 1, 0, 0, 0, 0, 0, 0, 0];
+let ruleBirth = [0, 1, 0, 0, 0, 0, 0, 0, 0];
+let numberOfStates = 2;
+let memoryFactor = 0.50007; 
+let lifeform = [[0,0,0],
+                [0,1,0],
+                [0,0,0]];
 myp5 = new p5(s, 'canvas1');
-
-function turnon(lifein=spaceship1) {
-  lifeform=lifein;
-  myp5.remove();
-  myp5 = new p5(s, 'canvas1');
-}
+myp5.frameRate(20)
 </script>
 
 <div id="canvas1" class="background" ></div>
-<p onmouseover="turnon(spaceship1);">
-<section  class="narrow" onmouseover="turnon(spaceship1);">
+<p>
+<section>
 <hr>
-<h2 class="clickable">spaceship1</h2>
+<h2>unity rule with memory</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
 
-<p>
-The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
-</p>
+
+<p>Parity rule: a cell becomes alive if the number of neighbours is odd and dies if the number of neighbours is even.</p>
+
 </body>
 </html>

@@ -136,11 +136,19 @@ function closeNav() {
   <input type="radio" name="state" value="19" onclick="turnon();">19
   <input type="radio" name="state" value="20" onclick="turnon();">20
 </form> 
-
+<form action="/action_page.php">
+  Starting Pattern:<br>
+  <input type="radio" name="startingPattern" value="0" checked onclick="turnon();">Random
+  <input type="radio" name="startingPattern" value="1" onclick="turnon();">Single Point
+</form> 
+Frame Rate:
+<br>
+<input type="range" min="1" max="20" value="15" class="slider" id="frameRate" onclick="turnon();">
 <script type="text/javascript" src="lifeforms.js"></script>
 <script type="text/javascript" src="5life.js"></script>
 <script>
-let timeStep = 0.05;
+frameRate = document.getElementById("frameRate").value
+let timeStep = 1/frameRate;
 let spaceStep = 10;
 let ruleKeep  = [Number(document.getElementById("k0").checked),
                  Number(document.getElementById("k1").checked),
@@ -167,7 +175,11 @@ for(i = 0; i < state.length; i++) {
       numberOfStates = state[i].value; 
 } 
 let memoryFactor = 0; 
-let lifeform = 0;
+var pattern = document.getElementsByName('startingPattern');
+let startingPattern = 0;
+lifeform = [[0]];
+
+
 myp5 = new p5(s, 'canvas1');
 function turnon() {
     ruleKeep  = [Number(document.getElementById("k0").checked),
@@ -192,8 +204,25 @@ function turnon() {
                 for(i = 0; i < state.length; i++) { 
                     if(state[i].checked) 
                       numberOfStates = state[i].value; 
-                }                  
-  myp5.insertLife();
+                }
+                pattern = document.getElementsByName('startingPattern');
+                for(i = 0; i < pattern.length; i++) { 
+                    if(pattern[i].checked) 
+                      startingPattern = pattern[i].value; 
+                } 
+                if (startingPattern==0) {
+                  lifeform = [[0]];
+                } 
+                if (startingPattern==1) {
+                  delete lifeform;
+                  lifeform = [[0,0,0],
+                              [0,1,0],
+                              [0,0,0]];
+                }
+  frameRate = document.getElementById("frameRate").value
+  myp5.frameRate(frameRate);       
+  myp5.init();        
+  myp5.insertLife(lifeform);
 }
 </script>
 <p class="margin">The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.

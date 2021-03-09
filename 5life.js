@@ -93,9 +93,9 @@ const s = ( p ) => {
     }
   }
 
-  p.insertLife = function(lifeformInstance=0,xOffset = p.int(p.width/p.spacer/2), yOffset = p.int(p.height/p.spacer/2)) {
+  p.insertLife = function(lifeformInstance=[[0]],xOffset = p.int(p.width/p.spacer/2), yOffset = p.int(p.height/p.spacer/2)) {
   lifeformInstance=lifeform;
-  if (lifeformInstance==0) {
+  if (lifeformInstance.length==1) {
     p.alive = p.alive.map(x => x.map(y => p.int(p.random(1.7))))
   } else {
     for (x = 0; x < lifeformInstance.length; x += 1) {

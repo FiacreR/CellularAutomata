@@ -141,9 +141,9 @@ function closeNav() {
   <input type="radio" name="startingPattern" value="0" checked onclick="turnon();">Random
   <input type="radio" name="startingPattern" value="1" onclick="turnon();">Single Point
 </form> 
-Frame Rate:
+Frame Rate (resets the simulation and all parameters):
 <br>
-<input type="range" min="1" max="20" value="15" class="slider" id="frameRate" onclick="turnon();">
+<input type="range" min="1" max="20" value="15" class="slider" id="frameRate" onclick="fullreset();">
 <script type="text/javascript" src="lifeforms.js"></script>
 <script type="text/javascript" src="5life.js"></script>
 <script>
@@ -219,10 +219,15 @@ function turnon() {
                               [0,1,0],
                               [0,0,0]];
                 }
-  frameRate = document.getElementById("frameRate").value
-  myp5.frameRate(frameRate);       
   myp5.init();        
   myp5.insertLife(lifeform);
+}
+
+function fullreset() {
+  frameRate = document.getElementById("frameRate").value
+  timeStep = 1/frameRate;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
 }
 </script>
 <p class="margin">The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.

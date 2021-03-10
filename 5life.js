@@ -21,9 +21,11 @@ const s = ( p ) => {
   }
 
   p.draw = function() {
+    p.colorMode(p.RGB);
     p.fill(20,20,20);
     p.rect(-2, -2, p.width+4, p.height+4);
     p.stroke(0,0,0);
+    p.colorMode(p.HSB, 1);
     p.display();
     p.applyRule();
   }
@@ -40,7 +42,7 @@ const s = ( p ) => {
     p.alive.map(function(x,indexX) {
       x.map(function(y,indexY){
         if(y>0){
-          p.fill(1.5*(y-1)/p.maxState*250,150,0);
+          p.fill(((y-1)/(5*(numberOfStates-1))+0.6)%1,0.95,0.85);
           p.square(indexX*p.spacer, indexY*p.spacer,p.spacer*0.8,p.spacer*0.2);
         }
       })

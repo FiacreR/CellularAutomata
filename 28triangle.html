@@ -67,7 +67,7 @@ function closeNav() {
 
 <section>
 <hr>
-<h2>Square tessellation</h2>
+<h2>Triangular tiling</h2>
 <hr>
 </section>
 
@@ -92,6 +92,14 @@ function closeNav() {
   <label for="k7"> 7</label>
   <input type="checkbox" id="k8" name="k8" onclick="turnon();">
   <label for="k8"> 8</label><br>
+  <input type="checkbox" id="k9" name="k9" onclick="turnon();">
+  <label for="k2"> 9</label>
+  <input type="checkbox" id="k10" name="k10" onclick="turnon();">
+  <label for="k2"> 10</label>
+  <input type="checkbox" id="k11" name="k11" onclick="turnon();">
+  <label for="k2"> 11</label>
+  <input type="checkbox" id="k12" name="k12" onclick="turnon();">
+  <label for="k2"> 12</label>
 </form> 
 <form action="/action_page.php">
   Number of live neighbors to bring a non-living cell to life:<br>
@@ -113,6 +121,14 @@ function closeNav() {
   <label for="b7"> 7</label>
   <input type="checkbox" id="b8" name="b8" onclick="turnon();">
   <label for="b8"> 8</label><br>
+  <input type="checkbox" id="b9" name="b9" onclick="turnon();">
+  <label for="b2"> 9</label>
+  <input type="checkbox" id="b10" name="b10" onclick="turnon();">
+  <label for="b2"> 10</label>
+  <input type="checkbox" id="b11" name="b11" onclick="turnon();">
+  <label for="b2"> 11</label>
+  <input type="checkbox" id="b12" name="b12" onclick="turnon();">
+  <label for="b2"> 12</label>
 </form> 
 <form action="/action_page.php">
   Number of states:<br>
@@ -158,7 +174,11 @@ let ruleKeep  = [Number(document.getElementById("k0").checked),
                  Number(document.getElementById("k5").checked),
                  Number(document.getElementById("k6").checked),
                  Number(document.getElementById("k7").checked),
-                 Number(document.getElementById("k8").checked)];
+                 Number(document.getElementById("k8").checked),
+                 Number(document.getElementById("k9").checked),
+                 Number(document.getElementById("k10").checked),
+                 Number(document.getElementById("k11").checked),
+                 Number(document.getElementById("k12").checked)];
 let ruleBirth = [Number(document.getElementById("b0").checked),
                  Number(document.getElementById("b1").checked),
                  Number(document.getElementById("b2").checked),
@@ -167,7 +187,11 @@ let ruleBirth = [Number(document.getElementById("b0").checked),
                  Number(document.getElementById("b5").checked),
                  Number(document.getElementById("b6").checked),
                  Number(document.getElementById("b7").checked),
-                 Number(document.getElementById("b8").checked)];
+                 Number(document.getElementById("b8").checked),
+                 Number(document.getElementById("b9").checked),
+                 Number(document.getElementById("b10").checked),
+                 Number(document.getElementById("b11").checked),
+                 Number(document.getElementById("b12").checked)];
 let numberOfStates = 2;
 var state = document.getElementsByName('state'); 
 for(i = 0; i < state.length; i++) { 
@@ -187,8 +211,8 @@ myp5.draw = function() {
     myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
     myp5.stroke(0,0,0);
     myp5.colorMode(myp5.HSB, 1);
-    myp5.displaySquare();
-    myp5.applyRuleSquare();
+    myp5.displayTriangle();
+    myp5.applyRuleTriangle();
     myp5.finaliseRule();
   }
 function turnon() {
@@ -200,7 +224,11 @@ function turnon() {
                  Number(document.getElementById("k5").checked),
                  Number(document.getElementById("k6").checked),
                  Number(document.getElementById("k7").checked),
-                 Number(document.getElementById("k8").checked)];
+                 Number(document.getElementById("k8").checked),
+                 Number(document.getElementById("k9").checked),
+                 Number(document.getElementById("k10").checked),
+                 Number(document.getElementById("k11").checked),
+                 Number(document.getElementById("k12").checked)];
     ruleBirth = [Number(document.getElementById("b0").checked),
                  Number(document.getElementById("b1").checked),
                  Number(document.getElementById("b2").checked),
@@ -209,7 +237,11 @@ function turnon() {
                  Number(document.getElementById("b5").checked),
                  Number(document.getElementById("b6").checked),
                  Number(document.getElementById("b7").checked),
-                 Number(document.getElementById("b8").checked)];
+                 Number(document.getElementById("b8").checked),
+                 Number(document.getElementById("b9").checked),
+                 Number(document.getElementById("b10").checked),
+                 Number(document.getElementById("b11").checked),
+                 Number(document.getElementById("b12").checked)];
                 state = document.getElementsByName('state'); 
                 for(i = 0; i < state.length; i++) { 
                     if(state[i].checked) 

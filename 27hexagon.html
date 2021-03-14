@@ -76,47 +76,39 @@ function closeNav() {
   Number of live neighbors required to keep a living cell alive:<br>
   <input type="checkbox" id="k0" name="k0" onclick="turnon();">
   <label for="k0"> 0</label>
-  <input type="checkbox" id="k1" name="k1" onclick="turnon();">
+  <input type="checkbox" id="k1" name="k1" checked onclick="turnon();">
   <label for="k1"> 1</label>
-  <input type="checkbox" id="k2" name="k2" checked onclick="turnon();">
+  <input type="checkbox" id="k2" name="k2" onclick="turnon();">
   <label for="k2"> 2</label>
   <input type="checkbox" id="k3" name="k3" checked onclick="turnon();">
   <label for="k3"> 3</label>
   <input type="checkbox" id="k4" name="k4" onclick="turnon();">
   <label for="41"> 4</label>
-  <input type="checkbox" id="k5" name="k5" onclick="turnon();">
+  <input type="checkbox" id="k5" name="k5" checked onclick="turnon();">
   <label for="k5"> 5</label>
   <input type="checkbox" id="k6" name="k6" onclick="turnon();">
   <label for="k6"> 6</label>
-  <input type="checkbox" id="k7" name="k7" onclick="turnon();">
-  <label for="k7"> 7</label>
-  <input type="checkbox" id="k8" name="k8" onclick="turnon();">
-  <label for="k8"> 8</label><br>
 </form> 
 <form action="/action_page.php">
   Number of live neighbors to bring a non-living cell to life:<br>
   <input type="checkbox" id="b0" name="b0" onclick="turnon();">
   <label for="b0"> 0</label>
-  <input type="checkbox" id="b1" name="b1" onclick="turnon();">
+  <input type="checkbox" id="b1" name="b1" checked onclick="turnon();">
   <label for="b1"> 1</label>
   <input type="checkbox" id="b2" name="b2" onclick="turnon();">
   <label for="b2"> 2</label>
-  <input type="checkbox" id="b3" name="b3" checked onclick="turnon();">
+  <input type="checkbox" id="b3" name="b3" onclick="turnon();">
   <label for="b3"> 3</label>
   <input type="checkbox" id="b4" name="b4" onclick="turnon();">
   <label for="41"> 4</label>
-  <input type="checkbox" id="b5" name="b5" onclick="turnon();">
+  <input type="checkbox" id="b5" name="b5" checked onclick="turnon();">
   <label for="b5"> 5</label>
   <input type="checkbox" id="b6" name="b6" onclick="turnon();">
   <label for="b6"> 6</label>
-  <input type="checkbox" id="b7" name="b7" onclick="turnon();">
-  <label for="b7"> 7</label>
-  <input type="checkbox" id="b8" name="b8" onclick="turnon();">
-  <label for="b8"> 8</label><br>
 </form> 
 <form action="/action_page.php">
   Number of states:<br>
-  <input type="radio" name="state" value="2" checked onclick="turnon();">2
+  <input type="radio" name="state" value="2" onclick="turnon();">2
   <input type="radio" name="state" value="3" onclick="turnon();">3
   <input type="radio" name="state" value="4" onclick="turnon();">4
   <input type="radio" name="state" value="5" onclick="turnon();">5
@@ -134,16 +126,16 @@ function closeNav() {
   <input type="radio" name="state" value="17" onclick="turnon();">17
   <input type="radio" name="state" value="18" onclick="turnon();">18
   <input type="radio" name="state" value="19" onclick="turnon();">19
-  <input type="radio" name="state" value="20" onclick="turnon();">20
+  <input type="radio" name="state" value="20" checked onclick="turnon();">20
 </form> 
 <form action="/action_page.php">
   Starting Pattern:<br>
-  <input type="radio" name="startingPattern" value="0" checked onclick="turnon();">Random
-  <input type="radio" name="startingPattern" value="1" onclick="turnon();">Single Point
+  <input type="radio" name="startingPattern" value="0" onclick="turnon();">Random
+  <input type="radio" name="startingPattern" value="1" checked onclick="turnon();">Single Point
 </form> 
 Frame Rate:
 <br>
-<input type="range" min="1" max="20" value="15" class="slider" id="frameRate" onclick="fullreset();">
+<input type="range" min="1" max="20" value="4" class="slider" id="frameRate" onclick="fullreset();">
 <script type="text/javascript" src="lifeforms.js"></script>
 <script type="text/javascript" src="core.js"></script>
 <script>
@@ -156,18 +148,14 @@ let ruleKeep  = [Number(document.getElementById("k0").checked),
                  Number(document.getElementById("k3").checked),
                  Number(document.getElementById("k4").checked),
                  Number(document.getElementById("k5").checked),
-                 Number(document.getElementById("k6").checked),
-                 Number(document.getElementById("k7").checked),
-                 Number(document.getElementById("k8").checked)];
+                 Number(document.getElementById("k6").checked)];
 let ruleBirth = [Number(document.getElementById("b0").checked),
                  Number(document.getElementById("b1").checked),
                  Number(document.getElementById("b2").checked),
                  Number(document.getElementById("b3").checked),
                  Number(document.getElementById("b4").checked),
                  Number(document.getElementById("b5").checked),
-                 Number(document.getElementById("b6").checked),
-                 Number(document.getElementById("b7").checked),
-                 Number(document.getElementById("b8").checked)];
+                 Number(document.getElementById("b6").checked)];
 let numberOfStates = 2;
 var state = document.getElementsByName('state'); 
 for(i = 0; i < state.length; i++) { 
@@ -177,7 +165,9 @@ for(i = 0; i < state.length; i++) {
 let memoryFactor = 0; 
 var pattern = document.getElementsByName('startingPattern');
 let startingPattern = 0;
-lifeform = [[0]];
+lifeform = [[0,0,0],
+            [0,1,0],
+            [0,0,0]];
 
 
 myp5 = new p5(s, 'canvas1');
@@ -187,8 +177,8 @@ myp5.draw = function() {
     myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
     myp5.stroke(0,0,0);
     myp5.colorMode(myp5.HSB, 1);
-    myp5.displaySquare();
-    myp5.applyRuleSquare();
+    myp5.displayHexagon();
+    myp5.applyRuleHexagon();
     myp5.finaliseRule();
   }
 function turnon() {
@@ -198,18 +188,14 @@ function turnon() {
                  Number(document.getElementById("k3").checked),
                  Number(document.getElementById("k4").checked),
                  Number(document.getElementById("k5").checked),
-                 Number(document.getElementById("k6").checked),
-                 Number(document.getElementById("k7").checked),
-                 Number(document.getElementById("k8").checked)];
+                 Number(document.getElementById("k6").checked)];
     ruleBirth = [Number(document.getElementById("b0").checked),
                  Number(document.getElementById("b1").checked),
                  Number(document.getElementById("b2").checked),
                  Number(document.getElementById("b3").checked),
                  Number(document.getElementById("b4").checked),
                  Number(document.getElementById("b5").checked),
-                 Number(document.getElementById("b6").checked),
-                 Number(document.getElementById("b7").checked),
-                 Number(document.getElementById("b8").checked)];
+                 Number(document.getElementById("b6").checked)];
                 state = document.getElementsByName('state'); 
                 for(i = 0; i < state.length; i++) { 
                     if(state[i].checked) 

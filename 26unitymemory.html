@@ -21,7 +21,7 @@
     <br>
     <a href="7brianbrain.html">B. Two dimensional cellular automata:</a>
     <a href="7brianbrain.html">I. Totalistic</a>
-    <a href="15triangular.html">1 Triangular tessellation</a>
+    <a href="28triangle.html">1 Triangular tessellation</a>
     <a href="15triangular.html">&nbsp;&nbsp;1.1 Rule 3,5/4</a>
     <a href="15triangular.html">&nbsp;&nbsp;&nbsp;&nbsp;1.1.1 Random soup</a>
     <a href="16triangularspaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;1.1.2 Spaceships</a>
@@ -45,7 +45,7 @@
     <a href="22pentagonalspacehips.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Spaceships</a>
     <a href="23pentagonaloscillators.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 Oscillators</a>
     <br>
-    <a href="8hexagonal.html">4 Hexagonal tessellation</a>
+    <a href="27hexagon.html">4 Hexagonal tessellation</a>
     <a href="8hexagonal.html">&nbsp;&nbsp;4.1 Rule 3/2</a>
     <a href="8hexagonal.html">&nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Random soup</a>
     <a href="10hexagonalspaceships.html">&nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Spaceships</a>
@@ -64,7 +64,7 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="5life.js"></script>
+<script type="text/javascript" src="core.js"></script>
 <script>
 let timeStep = 0.25;
 let spaceStep = 5;
@@ -77,6 +77,16 @@ let lifeform = [[0,0,0],
                 [0,0,0]];
 myp5 = new p5(s, 'canvas1');
 myp5.frameRate(20)
+myp5.draw = function() {
+    myp5.colorMode(myp5.RGB);
+    myp5.fill(20,20,20);
+    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
+    myp5.stroke(0,0,0);
+    myp5.colorMode(myp5.HSB, 1);
+    myp5.displaySquare();
+    myp5.applyRuleSquare();
+    myp5.finaliseRule();
+  }
 </script>
 
 <div id="canvas1" class="background" ></div>

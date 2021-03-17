@@ -92,6 +92,111 @@ const s = ( p ) => {
     })
   }
 
+  p.displayPentagon = function() {
+    
+    for (x = 0; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone(x*p.spacer,y*p.spacer,p.spacer,-90)
+          }
+        }
+      }
+    for (x = 1; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+5)*p.spacer,y*p.spacer,p.spacer,180)
+          }
+        }
+      }
+      for (x = 2; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+4)*p.spacer,y*p.spacer,p.spacer,0)
+          }
+        }
+      }
+      for (x = 3; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+5)*p.spacer,y*p.spacer,p.spacer,90)
+          }
+        }
+      }
+    for (x = 0; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+2)*p.spacer,(y+1)*p.spacer,p.spacer,-90)
+          }
+        }
+      }
+    for (x = 1; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+7)*p.spacer,(y+1.05)*p.spacer,p.spacer,180)
+          }
+        }
+      }
+    for (x = 2; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+6)*p.spacer,(y+1.05)*p.spacer,p.spacer,0)
+          }
+        }
+      }
+    for (x = 3; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          if (p.alive[x][y] >0) {
+            p.fill(((p.alive[x][y]-1)/(5*(numberOfStates-1))+0.01)%1,0.95,0.85);
+            p.pentagone((x+7)*p.spacer,(y+1)*p.spacer,p.spacer,90)
+          }
+        }
+      }
+  }
+
+  p.pentagone = function(xoff=0,yoff=0,lengthLongSides=10,orientation=0) {
+    p.push();
+    lengthLongSides=lengthLongSides/0.85;
+    p.translate(xoff,yoff);
+    p.rotate(p.radians(orientation));
+    p.beginShape();
+    xpentagone = 0;
+    ypentagone = 0;
+    p.vertex(xpentagone, ypentagone);
+    angle = p.radians(-180);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides*(p.sqrt(3)-1)/2;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides*(p.sqrt(3)-1)/2;
+    p.vertex(xpentagone, ypentagone);
+    angle = p.radians(120);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides;
+    p.vertex(xpentagone, ypentagone);
+    angle = angle - p.radians(90);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides;
+    p.vertex(xpentagone, ypentagone);
+    angle = angle - p.radians(60);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides;
+    p.vertex(xpentagone, ypentagone);
+    angle = angle + p.radians(-90);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides;
+    p.vertex(xpentagone, ypentagone);
+    angle = p.radians(-180);
+    xpentagone = xpentagone + p.cos(angle) * lengthLongSides*(p.sqrt(3)-1)/2;
+    ypentagone = ypentagone + p.sin(angle) * lengthLongSides*(p.sqrt(3)-1)/2;
+    p.vertex(xpentagone, ypentagone);
+    p.endShape();
+    p.pop();
+  }
+
   p.displayHexagon = function() {
     for (x = 0; x < (p.width/p.spacer); x += 2) {
         for (y = 0; y < (p.height/p.spacer); y += 2) {
@@ -261,6 +366,130 @@ const s = ( p ) => {
             }
           if(p.alive[x][y]==0){
             for (i=0; i<=6;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleBirth[i]}}
+          }
+      }
+    }
+  }
+
+  p.applyRulePentagon = function() {
+    p.aliveTemp = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.total = Array(p.int(p.width/p.spacer)).fill().map(() => Array(p.int(p.height/p.spacer)).fill(0));
+    p.simHeight = p.alive[0].length;
+    p.simLength = p.alive.length;
+    for (x = 0; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-7+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x-6+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x-5+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x-5+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-5+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x-3+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (x = 1; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-3+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x-2+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+3+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x+3+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+      for (x = 2; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-5+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x-3+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+      for (x = 3; x < (p.width/p.spacer); x += 4) {
+        for (y = 0; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-2+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y-3+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+1+p.simHeight)%p.simHeight],
+                          p.alive[(x+5+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (x = 0; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x-2+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x-2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-3+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-5+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight],
+                          p.alive[(x-3+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (x = 1; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x+1+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+3+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+5+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x+7+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (x = 2; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+1+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+3+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight],
+                          p.alive[(x+6+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (x = 3; x < (p.width/p.spacer); x += 4) {
+        for (y = 1; y < (p.height/p.spacer); y += 4) {
+          p.total[x][y] = [p.alive[(x-2+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x-1+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+2+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight],
+                          p.alive[(x+3+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x+5+p.simLength)%p.simLength][(y-1+p.simHeight)%p.simHeight],
+                          p.alive[(x+5+p.simLength)%p.simLength][(y+p.simHeight)%p.simHeight],
+                          p.alive[(x+5+p.simLength)%p.simLength][(y+3+p.simHeight)%p.simHeight]]
+                          .filter(elements => elements==1).length;;
+        }
+      }
+
+    for (y = 0; y < p.simHeight; y += 1) {
+      for (x = 0; x < p.simLength; x++) {
+          if(p.alive[x][y]>1){
+            p.aliveTemp[x][y]=(p.alive[x][y]+1)%numberOfStates;
+          }
+          if(p.alive[x][y]==1){
+            for (i=0; i<=7;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=(2-ruleKeep[i])%numberOfStates}}
+            }
+          if(p.alive[x][y]==0){
+            for (i=0; i<=7;i++) {if (p.total[x][y]==i) {p.aliveTemp[x][y]=ruleBirth[i]}}
           }
       }
     }

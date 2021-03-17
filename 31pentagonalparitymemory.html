@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Cellular Automata</title>
+  <title>Pentagonal.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,11 +39,14 @@
     <a href="7brianbrain.html">&nbsp;&nbsp;2.3 Brian's brain</a>
     <a href="6forestfire.html">&nbsp;&nbsp;2.4 Forest fire</a>
     <br>
-    <a href="21pentagonal.html">3 Pentagonal tessellation (Cairo)</a>
+    <a href="29pentagon.html">3 Pentagonal tessellation (Cairo)</a>
     <a href="21pentagonal.html">&nbsp;&nbsp;3.1 Rule 2,4/3,4,6</a>
     <a href="21pentagonal.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Random soup</a>
     <a href="22pentagonalspacehips.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Spaceships</a>
     <a href="23pentagonaloscillators.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 Oscillators</a>
+    <a href="30pentagonalunitymemory.html">&nbsp;&nbsp;3.2 Single point</a>
+    <a href="30pentagonalunitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Unity rule with memory</a>
+    <a href="31pentagonalparitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Parity rule with memory</a>
     <br>
     <a href="27hexagon.html">4 Hexagonal tessellation</a>
     <a href="8hexagonal.html">&nbsp;&nbsp;4.1 Rule 3/2</a>
@@ -66,31 +69,39 @@ function closeNav() {
 <br>
 <script type="text/javascript" src="core.js"></script>
 <script>
-let timeStep = 0.25;
+let timeStep = 0.5;
 let spaceStep = 5;
-let ruleKeep  = [0, 1, 0, 0, 0, 0, 0, 0, 0];
-let ruleBirth = [0, 1, 0, 0, 0, 0, 0, 0, 0];
+let ruleKeep  = [0, 1, 0, 1, 0, 1, 0, 1, 0];
+let ruleBirth = [0, 1, 0, 1, 0, 1, 0, 1, 0];
 let numberOfStates = 2;
-let memoryFactor = 0.5; 
+let memoryFactor = 0.5007; 
 let lifeform = [[0,0,0],
                 [0,1,0],
                 [0,0,0]];
 myp5 = new p5(s, 'canvas1');
-myp5.frameRate(20)
+myp5.draw = function() {
+    myp5.colorMode(myp5.RGB);
+    myp5.fill(20,20,20);
+    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
+    myp5.stroke(0,0,0);
+    myp5.colorMode(myp5.HSB, 1);
+    myp5.displayPentagon();
+    myp5.applyRulePentagon();
+    myp5.finaliseRule();
+  }
 </script>
 
 <div id="canvas1" class="background" ></div>
 <p>
 <section>
 <hr>
-<h2>parity rule</h2>
+<h2>unity rule with memory</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
-
-
-<p>Parity rule: a cell becomes alive if the number of neighbours is odd and dies if the number of neighbours is even.</p>
-
+<p>
+The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
+</p>
 </body>
 </html>

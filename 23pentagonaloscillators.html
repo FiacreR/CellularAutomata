@@ -39,11 +39,14 @@
     <a href="7brianbrain.html">&nbsp;&nbsp;2.3 Brian's brain</a>
     <a href="6forestfire.html">&nbsp;&nbsp;2.4 Forest fire</a>
     <br>
-    <a href="21pentagonal.html">3 Pentagonal tessellation (Cairo)</a>
+    <a href="29pentagon.html">3 Pentagonal tessellation (Cairo)</a>
     <a href="21pentagonal.html">&nbsp;&nbsp;3.1 Rule 2,4/3,4,6</a>
     <a href="21pentagonal.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Random soup</a>
     <a href="22pentagonalspacehips.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Spaceships</a>
     <a href="23pentagonaloscillators.html">&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 Oscillators</a>
+    <a href="30pentagonalunitymemory.html">&nbsp;&nbsp;3.2 Single point</a>
+    <a href="30pentagonalunitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Unity rule with memory</a>
+    <a href="31pentagonalparitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Parity rule with memory</a>
     <br>
     <a href="27hexagon.html">4 Hexagonal tessellation</a>
     <a href="8hexagonal.html">&nbsp;&nbsp;4.1 Rule 3/2</a>
@@ -64,7 +67,7 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="21pentagonal.js"></script>
+<script type="text/javascript" src="core.js"></script>
 <script>
 let highfive = [[0,0,0,0,0,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,0,0,0,0,0,0],
@@ -117,14 +120,29 @@ let hummingbird = [[0,0,0,0,0,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,0,0,0,0,0,0]];
-let lifeform = hummingbird;
+let timeStep = 0.05;
+let spaceStep = 10;
+let ruleKeep  = [0, 0, 1, 1, 0, 0, 0, 0, 0];
+let ruleBirth = [0, 0, 0, 1, 1, 0, 1, 0, 0];
+let numberOfStates = 2;
+let memoryFactor = 0; 
+lifeform = hummingbird;
 myp5 = new p5(s, 'canvas1');
-
-function turnon(lifein=spaceship1) {
+function turnon(lifein=glider) {
   lifeform=lifein;
-  myp5.remove();
-  myp5 = new p5(s, 'canvas1');
+  myp5.init();        
+  myp5.insertLife(lifeform);
 }
+myp5.draw = function() {
+    myp5.colorMode(myp5.RGB);
+    myp5.fill(20,20,20);
+    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
+    myp5.stroke(0,0,0);
+    myp5.colorMode(myp5.HSB, 1);
+    myp5.displayPentagon();
+    myp5.applyRulePentagon();
+    myp5.finaliseRule();
+  }
 </script>
 
 <div id="canvas1" class="background" ></div>

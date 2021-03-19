@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Pentagonal.</title>
+  <title>Hexagonal.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,23 +76,29 @@ function closeNav() {
 <script type="text/javascript" src="core.js"></script>
 <script>
 let timeStep = 0.5;
-let spaceStep = 5;
-let ruleKeep  = [0, 1, 0, 1, 0, 1, 0, 1, 0];
-let ruleBirth = [0, 1, 0, 1, 0, 1, 0, 1, 0];
+let spaceStep = 10;
+let ruleKeep  = [0, 1, 0, 0, 0, 0, 0, 0, 0];
+let ruleBirth = [0, 1, 0, 0, 0, 0, 0, 0, 0];
 let numberOfStates = 2;
 let memoryFactor = 0.5007; 
 let lifeform = [[0,0,0],
                 [0,1,0],
                 [0,0,0]];
 myp5 = new p5(s, 'canvas1');
+
+function turnon(lifein=glider) {
+  lifeform=lifein;
+  myp5.init();        
+  myp5.insertLife(lifeform);
+}
 myp5.draw = function() {
     myp5.colorMode(myp5.RGB);
     myp5.fill(20,20,20);
     myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
     myp5.stroke(0,0,0);
     myp5.colorMode(myp5.HSB, 1);
-    myp5.displayPentagon();
-    myp5.applyRulePentagon();
+    myp5.display488();
+    myp5.apply488();
     myp5.finaliseRule();
   }
 </script>
@@ -101,7 +107,7 @@ myp5.draw = function() {
 <p>
 <section>
 <hr>
-<h2>unity rule with memory</h2>
+<h2>1-uniform 488: Unity rule with memory</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

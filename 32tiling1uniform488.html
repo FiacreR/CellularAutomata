@@ -63,6 +63,12 @@
     <a href="33tiling1uniform488.html">&nbsp;&nbsp;&nbsp;&nbsp;5.1.1 Random soup</a>
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;5.2 Single point</a>
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Unity rule with memory</a>
+    <br>
+    <a href="32tiling1uniform488.html">5 1-uniform tiling 488</a>
+    <a href="33tiling1uniform488.html">&nbsp;&nbsp;5.1 Sparkling fire: Rule 2,3,5/2/5</a>
+    <a href="33tiling1uniform488.html">&nbsp;&nbsp;&nbsp;&nbsp;5.1.1 Random soup</a>
+    <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;5.2 Single point</a>
+    <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Unity rule with memory</a>
 </div>
 <script>
 function openNav() {
@@ -76,7 +82,7 @@ function closeNav() {
 
 <section>
 <hr>
-<h2>Square tessellation</h2>
+<h2>1-uniform tiling 488</h2>
 <hr>
 </section>
 
@@ -85,9 +91,9 @@ function closeNav() {
   Number of live neighbors required to keep a living cell alive:<br>
   <input type="checkbox" id="k0" name="k0" onclick="turnon();">
   <label for="k0"> 0</label>
-  <input type="checkbox" id="k1" name="k1" checked onclick="turnon();">
+  <input type="checkbox" id="k1" name="k1" onclick="turnon();">
   <label for="k1"> 1</label>
-  <input type="checkbox" id="k2" name="k2" onclick="turnon();">
+  <input type="checkbox" id="k2" name="k2" checked onclick="turnon();">
   <label for="k2"> 2</label>
   <input type="checkbox" id="k3" name="k3" checked onclick="turnon();">
   <label for="k3"> 3</label>
@@ -102,15 +108,15 @@ function closeNav() {
   Number of live neighbors to bring a non-living cell to life:<br>
   <input type="checkbox" id="b0" name="b0" onclick="turnon();">
   <label for="b0"> 0</label>
-  <input type="checkbox" id="b1" name="b1" checked onclick="turnon();">
+  <input type="checkbox" id="b1" name="b1" onclick="turnon();">
   <label for="b1"> 1</label>
-  <input type="checkbox" id="b2" name="b2" onclick="turnon();">
+  <input type="checkbox" id="b2" name="b2" checked onclick="turnon();">
   <label for="b2"> 2</label>
   <input type="checkbox" id="b3" name="b3" onclick="turnon();">
   <label for="b3"> 3</label>
   <input type="checkbox" id="b4" name="b4" onclick="turnon();">
   <label for="41"> 4</label>
-  <input type="checkbox" id="b5" name="b5" checked onclick="turnon();">
+  <input type="checkbox" id="b5" name="b5" onclick="turnon();">
   <label for="b5"> 5</label>
   <input type="checkbox" id="b6" name="b6" onclick="turnon();">
   <label for="b6"> 6</label>
@@ -139,12 +145,12 @@ function closeNav() {
 </form> 
 <form action="/action_page.php">
   Starting Pattern:<br>
-  <input type="radio" name="startingPattern" value="0" onclick="turnon();">Random
-  <input type="radio" name="startingPattern" value="1" checked onclick="turnon();">Single Point
+  <input type="radio" name="startingPattern" value="0" checked onclick="turnon();">Random
+  <input type="radio" name="startingPattern" value="1" onclick="turnon();">Single Point
 </form> 
 Frame Rate:
 <br>
-<input type="range" min="1" max="20" value="4" class="slider" id="frameRate" onclick="fullreset();">
+<input type="range" min="1" max="20" value="5" class="slider" id="frameRate" onclick="fullreset();">
 <script type="text/javascript" src="lifeforms.js"></script>
 <script type="text/javascript" src="core.js"></script>
 <script>
@@ -174,10 +180,7 @@ for(i = 0; i < state.length; i++) {
 let memoryFactor = 0; 
 var pattern = document.getElementsByName('startingPattern');
 let startingPattern = 0;
-lifeform = [[0,0,0],
-            [0,1,0],
-            [0,0,0]];
-
+lifeform = [[0]];
 
 myp5 = new p5(s, 'canvas1');
 myp5.draw = function() {
@@ -186,8 +189,8 @@ myp5.draw = function() {
     myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
     myp5.stroke(0,0,0);
     myp5.colorMode(myp5.HSB, 1);
-    myp5.displayHexagon();
-    myp5.applyRuleHexagon();
+    myp5.display488();
+    myp5.apply488();
     myp5.finaliseRule();
   }
 function turnon() {

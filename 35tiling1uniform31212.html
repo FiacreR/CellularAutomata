@@ -64,11 +64,11 @@
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;5.2 Single point</a>
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Unity rule with memory</a>
     <br>
-    <a href="35tiling1uniform31212.html">6 1-uniform tiling 31212</a>
-    <a href="36tiling1uniform31212.html">&nbsp;&nbsp;6.1 Rule 3,4,5,6,10/2,4,6,10 with 5 states</a>
-    <a href="36tiling1uniform31212.html">&nbsp;&nbsp;&nbsp;&nbsp;6.1.1 Random soup</a>
-    <a href="37tiling1uniform31212.html">&nbsp;&nbsp;6.2 Single point</a>
-    <a href="37tiling1uniform31212.html">&nbsp;&nbsp;&nbsp;&nbsp;Rule 3,4,5,6,7(17),8(17),9(17),10(17),11(17),12(17)/1,2,3,5 with 17 states</a>
+    <a href="351uniformtiling31212.html">6 1-uniform tiling 31212</a>
+    <a href="33tiling1uniform488.html">&nbsp;&nbsp;6.1 Sparkling fire: Rule 2,3,5/2/5</a>
+    <a href="33tiling1uniform488.html">&nbsp;&nbsp;&nbsp;&nbsp;6.1.1 Random soup</a>
+    <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;6.2 Single point</a>
+    <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Rule 3,4,5,6,10,11/1,2,3,5,11 with 19 states</a>
 </div>
 <script>
 function openNav() {
@@ -82,7 +82,7 @@ function closeNav() {
 
 <section>
 <hr>
-<h2>Triangular tiling</h2>
+<h2>1-uniform tiling 31212</h2>
 <hr>
 </section>
 
@@ -93,15 +93,15 @@ function closeNav() {
   <label for="k0"> 0</label>
   <input type="checkbox" id="k1" name="k1" onclick="turnon();">
   <label for="k1"> 1</label>
-  <input type="checkbox" id="k2" name="k2" checked onclick="turnon();">
+  <input type="checkbox" id="k2" name="k2" onclick="turnon();">
   <label for="k2"> 2</label>
   <input type="checkbox" id="k3" name="k3" checked onclick="turnon();">
   <label for="k3"> 3</label>
-  <input type="checkbox" id="k4" name="k4" onclick="turnon();">
+  <input type="checkbox" id="k4" name="k4" checked onclick="turnon();">
   <label for="41"> 4</label>
-  <input type="checkbox" id="k5" name="k5" onclick="turnon();">
+  <input type="checkbox" id="k5" name="k5" checked onclick="turnon();">
   <label for="k5"> 5</label>
-  <input type="checkbox" id="k6" name="k6" onclick="turnon();">
+  <input type="checkbox" id="k6" name="k6" checked onclick="turnon();">
   <label for="k6"> 6</label>
   <input type="checkbox" id="k7" name="k7" onclick="turnon();">
   <label for="k7"> 7</label>
@@ -109,9 +109,9 @@ function closeNav() {
   <label for="k8"> 8</label><br>
   <input type="checkbox" id="k9" name="k9" onclick="turnon();">
   <label for="k2"> 9</label>
-  <input type="checkbox" id="k10" name="k10" onclick="turnon();">
+  <input type="checkbox" id="k10" name="k10" checked onclick="turnon();">
   <label for="k2"> 10</label>
-  <input type="checkbox" id="k11" name="k11" onclick="turnon();">
+  <input type="checkbox" id="k11" name="k11" checked onclick="turnon();">
   <label for="k2"> 11</label>
   <input type="checkbox" id="k12" name="k12" onclick="turnon();">
   <label for="k2"> 12</label>
@@ -120,15 +120,15 @@ function closeNav() {
   Number of live neighbors to bring a non-living cell to life:<br>
   <input type="checkbox" id="b0" name="b0" onclick="turnon();">
   <label for="b0"> 0</label>
-  <input type="checkbox" id="b1" name="b1" onclick="turnon();">
+  <input type="checkbox" id="b1" name="b1" checked onclick="turnon();">
   <label for="b1"> 1</label>
-  <input type="checkbox" id="b2" name="b2" onclick="turnon();">
+  <input type="checkbox" id="b2" name="b2" checked onclick="turnon();">
   <label for="b2"> 2</label>
   <input type="checkbox" id="b3" name="b3" checked onclick="turnon();">
   <label for="b3"> 3</label>
   <input type="checkbox" id="b4" name="b4" onclick="turnon();">
   <label for="41"> 4</label>
-  <input type="checkbox" id="b5" name="b5" onclick="turnon();">
+  <input type="checkbox" id="b5" name="b5" checked onclick="turnon();">
   <label for="b5"> 5</label>
   <input type="checkbox" id="b6" name="b6" onclick="turnon();">
   <label for="b6"> 6</label>
@@ -140,14 +140,14 @@ function closeNav() {
   <label for="b2"> 9</label>
   <input type="checkbox" id="b10" name="b10" onclick="turnon();">
   <label for="b2"> 10</label>
-  <input type="checkbox" id="b11" name="b11" onclick="turnon();">
+  <input type="checkbox" id="b11" name="b11" checked onclick="turnon();">
   <label for="b2"> 11</label>
   <input type="checkbox" id="b12" name="b12" onclick="turnon();">
   <label for="b2"> 12</label>
 </form> 
 <form action="/action_page.php">
   Number of states:<br>
-  <input type="radio" name="state" value="2" checked onclick="turnon();">2
+  <input type="radio" name="state" value="2" onclick="turnon();">2
   <input type="radio" name="state" value="3" onclick="turnon();">3
   <input type="radio" name="state" value="4" onclick="turnon();">4
   <input type="radio" name="state" value="5" onclick="turnon();">5
@@ -162,7 +162,7 @@ function closeNav() {
   <input type="radio" name="state" value="14" onclick="turnon();">14
   <input type="radio" name="state" value="15" onclick="turnon();">15
   <input type="radio" name="state" value="16" onclick="turnon();">16
-  <input type="radio" name="state" value="17" onclick="turnon();">17
+  <input type="radio" name="state" value="17" checked onclick="turnon();">17
   <input type="radio" name="state" value="18" onclick="turnon();">18
   <input type="radio" name="state" value="19" onclick="turnon();">19
   <input type="radio" name="state" value="20" onclick="turnon();">20
@@ -174,13 +174,13 @@ function closeNav() {
 </form> 
 Frame Rate:
 <br>
-<input type="range" min="1" max="20" value="15" class="slider" id="frameRate" onclick="fullreset();">
+<input type="range" min="1" max="20" value="5" class="slider" id="frameRate" onclick="fullreset();">
 <script type="text/javascript" src="lifeforms.js"></script>
 <script type="text/javascript" src="core.js"></script>
 <script>
 frameRate = document.getElementById("frameRate").value
 let timeStep = 1/frameRate;
-let spaceStep = 10;
+let spaceStep = 7.2;
 let ruleKeep  = [Number(document.getElementById("k0").checked),
                  Number(document.getElementById("k1").checked),
                  Number(document.getElementById("k2").checked),
@@ -216,9 +216,39 @@ for(i = 0; i < state.length; i++) {
 let memoryFactor = 0; 
 var pattern = document.getElementsByName('startingPattern');
 let startingPattern = 0;
-lifeform = [[0]];
-
-
+//lifeform = [[1,1,1,1,1,1],
+//            [1,1,1,1,1,1],
+//            [1,1,1,1,1,1],
+//            [1,1,1,1,1,1],
+//            [1,1,1,1,1,1],
+//            [0,0,0,0,0,0]];
+lifeform = [[1,1,1,1,1,1,1],
+            [1,0,1,0,1,0,1],
+            [1,1,1,1,1,1,1],
+            [1,0,1,0,1,0,1],
+            [1,1,1,1,1,1,1],
+            [1,0,1,0,1,0,1],
+            [1,1,1,1,1,1,1],
+            [1,0,1,0,1,0,1],
+            [0,0,0,0,0,0,0]];
+lifeformfirst = [[0,0,0,0,1,0,0],
+            [0,0,0,0,1,0,0],
+            [0,0,1,0,1,0,0],
+            [0,0,0,0,0,0,0]];
+lifeformsecond = [[0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,0,0,0,0],
+            [0,0,0,0,0,0,0]];
+lifeformdodecahedron = [[0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,0,1,0,0],
+            [1,1,0,1,1,0,0],
+            [0,0,1,0,0,0,0],
+            [1,0,1,0,0,0,0],
+            [0,0,0,0,0,0,0]]
+lifeform = [[0]]
+//lifeform=[[0]];
 myp5 = new p5(s, 'canvas1');
 myp5.draw = function() {
     myp5.colorMode(myp5.RGB);
@@ -226,10 +256,11 @@ myp5.draw = function() {
     myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
     myp5.stroke(0,0,0);
     myp5.colorMode(myp5.HSB, 1);
-    myp5.displayTriangle();
-    myp5.applyRuleTriangle();
+    myp5.display31212();
+    myp5.apply31212();
     myp5.finaliseRule();
   }
+
 function turnon() {
     ruleKeep  = [Number(document.getElementById("k0").checked),
                  Number(document.getElementById("k1").checked),

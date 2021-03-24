@@ -63,6 +63,12 @@
     <a href="33tiling1uniform488.html">&nbsp;&nbsp;&nbsp;&nbsp;5.1.1 Random soup</a>
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;5.2 Single point</a>
     <a href="34tiling1uniform488unitymemory.html">&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Unity rule with memory</a>
+    <br>
+    <a href="35tiling1uniform31212.html">6 1-uniform tiling 31212</a>
+    <a href="36tiling1uniform31212.html">&nbsp;&nbsp;6.1 Rule 3,4,5,6,10/2,4,6,10 with 5 states</a>
+    <a href="36tiling1uniform31212.html">&nbsp;&nbsp;&nbsp;&nbsp;6.1.1 Random soup</a>
+    <a href="37tiling1uniform31212.html">&nbsp;&nbsp;6.2 Single point</a>
+    <a href="37tiling1uniform31212.html">&nbsp;&nbsp;&nbsp;&nbsp;Rule 3,4,5,6,7(17),8(17),9(17),10(17),11(17),12(17)/1,2,3,5 with 17 states</a>
 </div>
 <script>
 function openNav() {
@@ -73,7 +79,14 @@ function closeNav() {
 }
 </script>
 <br>
+<script type="text/javascript" src="core.js"></script>
 <script>
+let timeStep = 0.05;
+let spaceStep = 10;
+let ruleKeep  = [0, 0, 0, 1, 0, 0, 0];
+let ruleBirth = [0, 0, 1, 0, 0, 0, 0];
+let numberOfStates = 2;
+let memoryFactor = 0; 
 let spaceship = [[0,0,0,0,0,0,1,0,0,0,0],
                 [0,0,0,1,0,0,0,0,0,0,0],
                 [1,0,0,0,0,0,1,0,0,0,1],
@@ -81,17 +94,24 @@ let spaceship = [[0,0,0,0,0,0,1,0,0,0,0],
                 [1,0,0,0,0,0,1,0,0,0,1],
                 [0,0,0,1,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,1,0,0,0,0]];
-</script>
-<script type="text/javascript" src="8hexagonal.js"></script>
-<script>
-let lifeform = spaceship;
+lifeform = spaceship
 myp5 = new p5(s, 'canvas1');
 
-function turnon(lifein=spaceship) {
+function turnon(lifein=glider) {
   lifeform=lifein;
-  myp5.remove();
-  myp5 = new p5(s, 'canvas1');
+  myp5.init();        
+  myp5.insertLife(lifeform);
 }
+myp5.draw = function() {
+    myp5.colorMode(myp5.RGB);
+    myp5.fill(20,20,20);
+    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
+    myp5.stroke(0,0,0);
+    myp5.colorMode(myp5.HSB, 1);
+    myp5.displayHexagon();
+    myp5.applyRuleHexagon();
+    myp5.finaliseRule();
+  }
 </script>
 
 <div id="canvas1" class="background" ></div>

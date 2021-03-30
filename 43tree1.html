@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Hexagonal.</title>
+  <title>Lindenmayer system.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,41 +91,37 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="coreLsystem.js"></script>
 <script>
-let timeStep = 0.1;
-let spaceStep = 7.2;
-let ruleKeep  = [0, 0, 0, 1, 1, 1, 1,17,17,17,17,17,17]
-let ruleBirth = [0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-let numberOfStates = 17;
-let memoryFactor = 0; 
-lifeform = [[0,0,0],
-            [0,1,0],
-            [0,0,0]];
+let interval;
+let angleIncrement = 22.5;
+let axiom = 'F';
+let sentence = axiom;
+let stepSize = 140;
+let rules = [];
+rules = {
+    F: 'FF-[-F+F+F]+[+F-F-F]'
+};
+let letterToBeReplaced = new RegExp(Object.keys(rules).join("|"),"gi");
+let initialXdivider = 2
+let initialYdivider = 1.3
+let scalingNormalisationFactor = 0.5
+let iteration = 0;
+let maxIteration = 3;
 myp5 = new p5(s, 'canvas1');
-myp5.draw = function() {
-    myp5.colorMode(myp5.RGB);
-    myp5.fill(20,20,20);
-    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
-    myp5.stroke(0,0,0);
-    myp5.colorMode(myp5.HSB, 1);
-    myp5.display31212();
-    myp5.apply31212();
-    myp5.finaliseRule();
-  }
 </script>
 
 <div id="canvas1" class="background" ></div>
-<p>
+    <p>
 <section>
 <hr>
-<h2>1-uniform 31212, rule 3,4,5,6,7(17),8(17),9(17),10(17),11(17),12(17)/1,2,3,5 with 17 states: Single point</h2>
+<h2>L-system: Tree 1</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
 <p>
-The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
+Source: The Algorithmic Beauty of Plants.
 </p>
 </body>
 </html>

@@ -106,21 +106,20 @@ function closeNav() {
 <script type="text/javascript" src="coreLsystem.js"></script>
 <script>
 let interval;
-let angleIncrement = 22.5;
-let axiom = 'X';
+let angleIncrement = 90;
+let axiom = 'F-F-F-F';
 let sentence = axiom;
-let stepSize = 140;
+let stepSize = 400;
 let rules = [];
 rules = {
-    X: 'F-[[X]+X]+F[+FX]-X',
-    F: 'FF'
+    F: 'F-F+F+F-F'
 };
 let letterToBeReplaced = new RegExp(Object.keys(rules).join("|"),"gi");
 let initialXdivider = 2
-let initialYdivider = 1.3
-let scalingNormalisationFactor = 0.5
+let initialYdivider = 2
+let scalingNormalisationFactor = 1/3
 let iteration = 0;
-let maxIteration = 6;
+let maxIteration = 3;
 myp5 = new p5(s, 'canvas1');
 </script>
 
@@ -128,7 +127,7 @@ myp5 = new p5(s, 'canvas1');
     <p>
 <section>
 <hr>
-<h2>L-system: Tree 3</h2>
+<h2>L-system: Box Fractal</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -25,6 +25,10 @@ const s = ( p ) => {
               p.line(0, 0, 0, -stepSize);
               p.translate(0, -stepSize);
               break;
+            case 'G':
+              p.line(0, 0, 0, -stepSize*1);
+              p.translate(0, -stepSize*1);
+              break;
             case 'f':
               p.translate(0, -stepSize);
               break;

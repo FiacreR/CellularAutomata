@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
+  <title>Lindenmayer system.</title>
+  <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+</head>
+<body>
+    <span style="font-size:40px;cursor:pointer;  position: fixed;top: 0;" onclick="openNav()">&#9776; Content</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Table of content</a>
+        <a href="1elementary.html">A. One dimensional cellular automata</a>
+        <a href="2totalistic.html">I. Totalistic</a>
+        <a href="1elementary.html">II. Elementary</a>
+        <a href="3continuous.html">III. Continuous</a>
+        <a href="4stochastic.html">IV. Stochastic</a>
+        <br>
+        <a href="7brianbrain.html">B. Two dimensional cellular automata:</a>
+        <a href="7brianbrain.html">I. Totalistic</a>
+        <a href="28triangle.html">1 Triangular tessellation</a>
+        <a href="15triangular.html">1.1 Rule 3,5/4</a>
+        <a href="15triangular.html">1.1.1 Random soup</a>
+        <a href="16triangularspaceships.html">1.1.2 Spaceships</a>
+        <a href="20triangularunity.html">1.3 Single point</a>
+        <a href="20triangularunity.html">1.2.1 Unity rule with memory</a>
+        <a href="19triangularparity.html">1.2.2 Parity rule with memory</a>
+        <br>
+        <a href="24square.html">2 Square tessellation</a>
+        <a href="5life.html">2.1 Rule 2,3/3: Conway's life</a>
+        <a href="5life.html">2.1.1 Random soup</a>
+        <a href="9lifespaceships.html">2.1.2 Spaceships</a>
+        <a href="26unitymemory.html">2.2 Single point</a>
+        <a href="26unitymemory.html">2.2.1 Unity rule with memory</a>
+        <a href="13memory.html">2.2.2 Parity rule with memory</a>
+        <a href="7brianbrain.html">2.3 Brian's brain</a>
+        <a href="6forestfire.html">2.4 Forest fire</a>
+        <br>
+        <a href="29pentagon.html">3 Pentagonal tessellation (Cairo)</a>
+        <a href="21pentagonal.html">3.1 Rule 2,4/3,4,6</a>
+        <a href="21pentagonal.html">3.1.1 Random soup</a>
+        <a href="22pentagonalspacehips.html">3.1.2 Spaceships</a>
+        <a href="23pentagonaloscillators.html">3.1.3 Oscillators</a>
+        <a href="30pentagonalunitymemory.html">3.2 Single point</a>
+        <a href="30pentagonalunitymemory.html">3.2.1 Unity rule with memory</a>
+        <a href="31pentagonalparitymemory.html">3.2.2 Parity rule with memory</a>
+        <br>
+        <a href="27hexagon.html">4 Hexagonal tessellation</a>
+        <a href="8hexagonal.html">4.1 Rule 3/2</a>
+        <a href="8hexagonal.html">4.1.1 Random soup</a>
+        <a href="10hexagonalspaceships.html">4.1.2 Spaceships</a>
+        <a href="11hexagonaloscillators.html">4.1.2 Oscillators</a>
+        <a href="17unitymemory.html">4.2 Single point</a>
+        <a href="17unitymemory.html">4.2.1 Unity rule with memory</a>
+        <a href="18paritymemory.html">4.2.2 Parity rule with memory</a>
+        <a href="14hexagonalforestfire.html">4.3 Forest fire</a>
+        <br>
+        <a href="32tiling1uniform488.html">5 1-uniform tiling 488</a>
+        <a href="33tiling1uniform488.html">5.1 Sparkling fire: Rule 2,3,5/2/5</a>
+        <a href="33tiling1uniform488.html">5.1.1 Random soup</a>
+        <a href="34tiling1uniform488unitymemory.html">5.2 Single point</a>
+        <a href="34tiling1uniform488unitymemory.html">5.2.1 Unity rule with memory</a>
+        <br>
+        <a href="35tiling1uniform31212.html">6 1-uniform tiling 31212</a>
+        <a href="36tiling1uniform31212.html">6.1 Rule 3,4,5,6,10/2,4,6,10 with 5 states</a>
+        <a href="36tiling1uniform31212.html">6.1.1 Random soup</a>
+        <a href="37tiling1uniform31212.html">6.2 Single point</a>
+        <a href="37tiling1uniform31212.html">Rule 3,4,5,6,7(17),8(17),9(17),10(17),11(17),12(17)/1,2,3,5 with 17 states</a>
+        <br>
+        <a href="39hilbertcurve.html">C. Lindenmayer system in two dimensions:</a>
+        <a href="39hilbertcurve.html">I. Deterministic</a>    
+        <a href="39hilbertcurve.html">1. Classic fractals</a>
+        <a href="39hilbertcurve.html">1.1 Plane filling functions</a>
+        <a href="39hilbertcurve.html">1.1.1 Hilbert curve</a>
+        <a href="39hilbertcurve2.html">1.1.2 Hilbert curve 2</a>
+        <a href="39gospercurve.html">1.1.3 Peano-Gosper curve</a>
+        <a href="42dragoncurve.html">1.1.4 Dragon curve</a>
+        <br>
+        <a href="41sierpinskiarrowhead.html">1.2 Other functions</a>
+        <a href="41sierpinskiarrowhead.html">1.2.1 Sierpinski arrowhead</a>
+        <a href="41sierpinskisquarecurve.html">1.2.2 Sierpinski square</a>
+        <a href="40quadratickoshisland.html">1.2.3 Quadratic Kosh Island</a>
+        <a href="41boxfractal.html">1.2.4 Box Fractal</a>
+        <a href="41pentadendrite.html">1.2.5 Pentadendrite</a>    
+        <a href="41koshsnowflake.html">1.2.6 Kosh Snowflake</a>
+        <br>
+        <a href="43tree1.html">2. Trees</a>
+        <a href="43tree1.html">2.1 Tree 1</a>
+        <a href="44tree2.html">2.2 Tree 2</a>
+        <a href="45tree3.html">2.3 Tree 3</a>
+        <a href="46tree4.html">2.4 Tree 4</a>
+        <a href="47tree5.html">2.5 Tree 5</a>
+        <br>
+        <a href="48hilbertcurve.html">D. Lindenmayer system in three dimensions:</a>
+        <a href="48hilbertcurve.html">I. Deterministic</a>    
+        <a href="48hilbertcurve.html">1. Classic fractals</a>
+        <a href="48hilbertcurve.html">1.1.1 Hilbert curve</a>
+
+    </div>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "450px";
+      }
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+      }
+  </script>
+  <section class = "inFront">
+    <br>
+    <br>
+    <hr>
+    <h2>L-system: Hilbert curve</h2>
+    <hr>
+</section>
+<br>
+<script src="js/three.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="core3DLsystem.js"></script>
+<script>
+
+    let angleIncrement=90;
+    let axiom = 'A';
+    let sentence = axiom;
+    let rules = [];
+    rules = {
+      A: 'B-F+CFC+F-D&F∧D-F+&&CFC+F+B//',
+      B: 'A&F∧CFB∧F∧D∧∧-F-D∧|F∧B|FC∧F∧A//',
+      C: '|D∧|F∧B-F+C∧F∧A&&FA&F∧C+F+B∧F∧D//',
+      D: '|CFB-F+B|FA&F∧A&&FB-F+B|FC//'
+  };
+  let letterToBeReplaced = new RegExp(Object.keys(rules).join("|"),"gi");
+  let iteration = 0;
+  let maxIteration = 2;
+  let stepSize = 2;
+  let x=7*stepSize/2;
+  let y=-7*stepSize/2;
+  let z=-7*stepSize/2;
+  let headingVector;
+  let group;
+
+  const scene = new THREE.Scene();
+  const aspect = window.innerWidth / window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(60, aspect, 1, 100);
+
+  {
+      const color = 0xFFFFFF;
+      const intensity = 1;
+      const light = new THREE.DirectionalLight(color, intensity);
+      light.position.set(-1, 2, 4);
+      scene.add(light);
+  }
+
+  var canv = document.createElement('canvas');
+  const renderer = new THREE.WebGLRenderer({antialias: true, canv: canv});
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setClearColor( 0x141414)
+  document.body.appendChild( renderer.domElement );
+  group = new THREE.Group();
+  scene.add(group);
+
+  applyRule()
+  applyRule()
+  applyRule()
+  display();
+  animate();
+
+  controls = new THREE.OrbitControls( camera, renderer.domElement );
+  camera.position.set(0, 20, 30);
+  camera.lookAt(0, 0, 0);
+
+</script>
+</body>
+</html>

@@ -56,6 +56,6 @@ const s = ( p ) => {
       p.createCanvas(720, 560);
       p.initialStepSize = stepSize;
       p.applyRule();
-      interval = setInterval(p.applyRule, 1500);
+      interval = setInterval(p.applyRule, 400);
   }
 }

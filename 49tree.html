@@ -106,7 +106,6 @@
         <a href="48hilbertcurve.html">1. Classic fractals</a>
         <a href="48hilbertcurve.html">1.1.1 Hilbert curve</a>
         <a href="49tree.html">1.1.2 Tree</a>
-
     </div>
     <script>
         function openNav() {
@@ -120,7 +119,7 @@
     <br>
     <br>
     <hr>
-    <h2>L-system: Hilbert curve</h2>
+    <h2>L-system: Tree</h2>
     <hr>
 </section>
 <br>
@@ -129,25 +128,25 @@
 <script src="core3DLsystem.js"></script>
 <script>
 
-    let angleIncrement=90;
+    let angleIncrement=22.5;
     let axiom = 'A';
     let sentence = axiom;
-    let colorOffset = 0.2;
+    let colorOffset = 0;
     let rules = [];
     rules = {
-      A: 'B-F+CFC+F-D&F∧D-F+&&CFC+F+B//',
-      B: 'A&F∧CFB∧F∧D∧∧-F-D∧|F∧B|FC∧F∧A//',
-      C: '|D∧|F∧B-F+C∧F∧A&&FA&F∧C+F+B∧F∧D//',
-      D: '|CFB-F+B|FA&F∧A&&FB-F+B|FC//'
+  A : '[’&FL!A]/////[’&FL!A]///////[’&FL!A]',
+  F : 'S/////F',
+  S : 'FL',
+  L : '[^^-L]'
   };
   let letterToBeReplaced = new RegExp(Object.keys(rules).join("|"),"gi");
   let iteration = 0;
-  let maxIteration = 2;
+  let maxIteration = 7;
   let stepSize = 2;
   let diameter = 0.2;
-  let x=7*stepSize/2;
-  let y=-7*stepSize/2;
-  let z=-7*stepSize/2;
+  let x=0;
+  let y=-maxIteration*stepSize/2;
+  let z=0;
   let headingVector;
   let group;
 
@@ -166,19 +165,21 @@
   var canv = document.createElement('canvas');
   const renderer = new THREE.WebGLRenderer({antialias: true, canv: canv});
   renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.setClearColor( 0x141414)
+  renderer.setClearColor( 0x87CEFA)
   document.body.appendChild( renderer.domElement );
   group = new THREE.Group();
   scene.add(group);
 
-  applyRule()
-  applyRule()
-  applyRule()
+  addGround();
+  for (ietration=0; iteration<maxIteration; iteration++) {
+    applyRule();
+  }
+
   display();
   animate();
 
   controls = new THREE.OrbitControls( camera, renderer.domElement );
-  camera.position.set(0, 20, 30);
+  camera.position.set(0, 10, 30);
   camera.lookAt(0, 0, 0);
 
 </script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta author="InMotion Hosting" /> 
-  <title>Pentagonal.</title>
+  <title>Lindenmayer system.</title>
   <link href="http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -116,39 +116,66 @@ function closeNav() {
 }
 </script>
 <br>
-<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="coreLsystem.js"></script>
 <script>
-let timeStep = 0.05;
-let spaceStep = 10;
-let ruleKeep  = [0, 0, 1, 1, 0, 0, 0, 0, 0];
-let ruleBirth = [0, 0, 0, 1, 1, 0, 1, 0, 0];
-let numberOfStates = 2;
-let memoryFactor = 0; 
-lifeform = [[0]];
+let interval;
+let angleIncrement = 22.5;
+let axiom = 'X';
+let sentence = axiom;
+let stepSize = 300;
+let rules = [];
+angleIncrement=angleIncrement/2;
+rules = {
+    X: 'F[+++X][+X][-X][---X]',
+    F: 'FF'
+};
+let letterToBeReplaced = new RegExp(Object.keys(rules).join("|"),"gi");
+let initialXdivider = 3
+let initialYdivider = 2
+let scalingNormalisationFactor = 0.5
+let iteration = 0;
+let maxIteration = 5;
 myp5 = new p5(s, 'canvas1');
-myp5.draw = function() {
-    myp5.colorMode(myp5.RGB);
-    myp5.fill(20,20,20);
-    myp5.rect(-2, -2, myp5.width+4, myp5.height+4);
-    myp5.stroke(0,0,0);
-    myp5.colorMode(myp5.HSB, 1);
-    myp5.displayPentagon();
-    myp5.applyRulePentagon();
-    myp5.finaliseRule();
-  }
+
+function fullreset() {
+    sentence = axiom;
+    stepSize = 300;
+    iteration = 0;
+    allAngles = document.getElementsByName('angle'); 
+    for(i = 0; i < allAngles.length; i++) { 
+        if(allAngles[i].checked) 
+          angleIncrement = allAngles[i].value; 
+    }
+  angleIncrement=angleIncrement/2;
+  myp5.remove();
+  myp5 = new p5(s, 'canvas1');
+}
 </script>
 
 <div id="canvas1" class="background" ></div>
-<p><p>
+    <p>
 <section>
 <hr>
-<h2>Pentagonal 2,3/3,4,6: Random Soup.</h2>
+<h2>L-system: Four branches</h2>
 <hr>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p>
 <p>
-The rules are written using K1,K2,..../B1,B2,.... where the Ki specify the number of live neighbors required to keep (K for keep) a living cell alive, and the Bi give the number required to bring (B for birth) a non-living cell to life. So 3/2 means a that 3 live neighbours are required to keep the cell alive and 2 live neighbours are required for birth.
+Source: The Algorithmic Beauty of Plants.
 </p>
+<form action="/action_page.php">
+  Angle between vertical and branches:<br>
+  <input type="radio" name="angle" value="22.5" checked onclick="fullreset();">22.5
+  <input type="radio" name="angle" value="30" onclick="fullreset();">30
+  <input type="radio" name="angle" value="36" onclick="fullreset();">36
+  <input type="radio" name="angle" value="45" onclick="fullreset();">45
+  <input type="radio" name="angle" value="60" onclick="fullreset();">60
+  <input type="radio" name="angle" value="72" onclick="fullreset();">72
+  <input type="radio" name="angle" value="90" onclick="fullreset();">90
+  <input type="radio" name="angle" value="135" onclick="fullreset();">135
+  <input type="radio" name="angle" value="144" onclick="fullreset();">144
+  <input type="radio" name="angle" value="150" onclick="fullreset();">150
+</form> 
 </body>
 </html>

@@ -7,7 +7,6 @@ const s = ( p ) => {
       sentence = sentence.replace(letterToBeReplaced, function(matched){
         return rules[matched];
       });
-      console.log(iteration)
   }
 
   p.display = function() {
